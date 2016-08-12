@@ -36,6 +36,10 @@ app.get('/register', function(req, res){
     res.render('register');
 })
 
+app.get('/user/:userName', function(req, res){
+    res.render('register');
+})
+
 
 //Database config ---------------------------------------/
 global.db = require('./models');
