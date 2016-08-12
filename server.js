@@ -24,6 +24,9 @@ app.set('view engine', 'handlebars');
 var htmlRoutes = require('./controllers/routes/htmlRoutes')(app);
 var apiRoutes = require('./controllers/routes/apiRoutes')(app);
 
+//Routes_____________________________________________________/
+app.use(express.static('public'));
+
 //Database config ---------------------------------------/
 global.db = require('./models');
 
