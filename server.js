@@ -25,19 +25,15 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 app.get('/', function(req,res) {
-  res.render('index');
+  res.render('landing');
 });
 
 app.get('/login', function(req, res){
     res.render('login');
 });
 
-app.get('/register', function(req, res){
-    res.render('register');
-})
-
 app.get('/user/:userName', function(req, res){
-    res.render('register');
+    res.render('account');
 })
 
 
