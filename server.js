@@ -1,22 +1,22 @@
 //App depencencies -----------------------------------------/
-var express         = require('express');
-var bodyParser      = require('body-parser');
-var exphbs          = require('express-handlebars');
-var methodOverride  = require('method-override');
-var app             = express();
+var express = require('express');
+var bodyParser = require('body-parser');
+var exphbs = require('express-handlebars');
+var methodOverride = require('method-override');
+var app = express();
 // require('dotenv').config();
 
 //App middleware -------------------------------------------/
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }));
 app.use(bodyParser.json());
 app.use(express.static(process.cwd() + "/public"));
 
 //Handlebars config ---------------------------------------/
 app.engine('handlebars', exphbs({
-  defaultLayout: 'main'
+    defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
 
@@ -24,15 +24,19 @@ app.set('view engine', 'handlebars');
 //serves static pages in the public folder
 app.use(express.static('public'));
 
-app.get('/', function(req,res) {
-  res.render('landing');
+app.get('/', function(req, res) {
+    res.render('landing');
 });
 
-app.get('/login', function(req, res){
+app.get('/login', function(req, res) {
     res.render('login');
 });
 
-app.get('/user/:userName', function(req, res){
+app.get('/registration', function(req, res) {
+    res.render('registration');
+});
+
+app.get('/user/:userName', function(req, res) {
     res.render('account');
 })
 
@@ -45,11 +49,11 @@ var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync().then(function() {
-  app.listen(PORT, function(err) {
-    if (err) {
-      console.error(err);
-    } else {
-      console.info("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
-    }
-  });
+    app.listen(PORT, function(err) {
+        if (err) {
+            console.error(err);
+        } else {
+            console.info("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+        }
+    });
 });
