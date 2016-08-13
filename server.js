@@ -23,17 +23,34 @@ app.set('view engine', 'handlebars');
 //Routes_____________________________________________________/
 //serves static pages in the public folder
 app.use(express.static('public'));
-
+//Landing Page route
 app.get('/', function(req, res) {
     res.render('landing');
 });
-
+//Login
 app.get('/login', function(req, res) {
     res.render('login');
 });
 
+app.post('/login', function(req, res) {
+    connection.query('INSERT INTO plans (plan) VALUES (?)', [req.body.plan], function(err, result) {
+      if (err) throw err;
+      res.redirect('/');
+    });
+});
+
+//Registration
 app.get('/registration', function(req, res) {
-    res.render('registration');
+    res.render('login');
+});
+
+app.post('/registration', function(req, res) {
+    'user strict';
+    User.create({ username: 'barfooz', email: 'test', password: 'password' }, { fields: [ 'username', 'email', 'password' ] }).then(function(user) {
+      console.log(user.get({
+        plain: true
+      }))
+    })
 });
 
 app.get('/user/:userName', function(req, res) {
