@@ -1,0 +1,18 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "commentscript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mariasql": "^0.2.6",
+    "mysql": "^2.11.1",
+    "pg": "^6.1.0",
+    "sequelize": "^3.24.0",
+    "sqlite3": "^3.1.4"
+  }
+}
