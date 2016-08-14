@@ -39,8 +39,12 @@ app.post('/login', function(req, res) {
     });
 });
 
+app.get('/:username/profile', function(req, res){
+    res.render('profile', {username: name });
+})
+
 //Registration
-app.get('/registration', function(req, res) {
+app.get('/registration', function(req, res){
     res.render('registration');
 });
 
@@ -52,11 +56,14 @@ app.post('/registration', function(req, res) {
       }))
     })
 });
-
-app.get('/user/:userName', function(req, res) {
-    res.render('account');
+//Account routes
+app.get('/user/:username', function(req, res) {
+    res.render('profile');
 })
 
+app.post('/user/:username', function(req, res){
+    'use strict';
+})
 
 //Database config ---------------------------------------/
 global.db = require('./models');
