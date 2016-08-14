@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/njwest/ProjectElm#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "dotenv": "^2.0.0",
