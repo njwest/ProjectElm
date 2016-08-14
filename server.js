@@ -41,7 +41,7 @@ app.post('/login', function(req, res) {
 
 //Registration
 app.get('/registration', function(req, res) {
-    res.render('login');
+    res.render('registration');
 });
 
 app.post('/registration', function(req, res) {
