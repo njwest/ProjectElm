@@ -82,7 +82,7 @@ db.sequelize.sync({force:true}).then(function() {
         if (err) {
             console.error(err);
         } else {
-            console.info("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+            console.info("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
         }
     });
 });
