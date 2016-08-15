@@ -20,6 +20,6 @@
     "port": "3306",
     "host": "q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql",
-    "use_env_variable": "NODE_ENV"
+    "use_env_variable": "JAWSDB_URL"
   }
 }
