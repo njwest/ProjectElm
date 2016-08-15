@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var methodOverride = require('method-override');
 var app = express();
-// require('dotenv').config();
+require('dotenv').config({silent: true});
 
 
 
@@ -29,7 +29,9 @@ app.use(express.static('public'));
 app.get('/', function(req, res) {
     res.render('landing');
 });
-//Login
+
+
+//Login _________________________________/
 app.get('/login', function(req, res) {
     res.render('login');
 });
@@ -41,8 +43,9 @@ app.post('/login', function(req, res) {
     });
 });
 
+//Profile _________________________________/
 app.get('/:username/profile', function(req, res){
-    res.render('profile', {username: name });
+    res.render('profile');
 })
 
 //Registration

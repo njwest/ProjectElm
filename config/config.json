@@ -19,7 +19,6 @@
     "database": "u288psx5fyaj3sbk",
     "port": "3306",
     "host": "q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    "dialect": "mysql",
-    "use_env_variable": "DATABASE_URL"
+    "dialect": "mysql"
   }
 }
