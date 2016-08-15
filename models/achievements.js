@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Achievements = sequelize.define('Achievements', {
     achievement: DataTypes.STRING,
-    streak: DataTypes.INT,
+    streak: DataTypes.INTEGER,
     habit: DataTypes.STRING
   }, {
     classMethods: {
