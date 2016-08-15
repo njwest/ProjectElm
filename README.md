@@ -7,3 +7,7 @@ https://github.com/ceckenrode/node-handlebars-sequelize-boilerplate
 
 Seamntic UI
 http://semantic-ui.com/
+
+
+##Heroku Link
+impulsion.herokuapp.com
