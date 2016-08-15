@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       streak: {
-        type: Sequelize.INT
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
