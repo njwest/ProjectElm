@@ -6,6 +6,8 @@ var methodOverride = require('method-override');
 var app = express();
 // require('dotenv').config();
 
+
+
 //App middleware -------------------------------------------/
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({
@@ -72,7 +74,7 @@ global.db = require('./models');
 var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync().then(function() {
+db.sequelize.sync({force:true}).then(function() {
     app.listen(PORT, function(err) {
         if (err) {
             console.error(err);
