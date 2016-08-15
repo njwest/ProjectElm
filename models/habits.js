@@ -1,4 +1,6 @@
 'use strict';
+
+
 module.exports = function(sequelize, DataTypes) {
   var Habits = sequelize.define('Habits', {
     habit: DataTypes.STRING,
@@ -7,6 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        Habits.belongsToMany(models.User, {through: 'userhabits'});
       }
     }
   });
