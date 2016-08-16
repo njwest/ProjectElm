@@ -1,12 +1,14 @@
 //App depencencies -----------------------------------------/
-var express = require('express');
-var bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
-var methodOverride = require('method-override');
-var app = express();
+var express         = require('express');
+var bodyParser      = require('body-parser');
+var exphbs          = require('express-handlebars');
+var methodOverride  = require('method-override');
+var app             = express();
+var Habits          = require('./models')['Habits'];
+var Achievements    = require('./models')['Achievements'];
+var Users           = require('./models')['User'];
+var UserHabits      = require('./models')['Userhabits'];
 require('dotenv').config({silent: true});
-
-var Habits = require('./models')['Habits']
 
 //App middleware -------------------------------------------/
 app.use(methodOverride('_method'));
@@ -31,7 +33,8 @@ app.set('view engine', 'handlebars');
 
 
 //serves static pages in the public folder
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use('/', express.static(__dirname + '/public'));
 //Landing Page route
 app.get('/', function(req, res) {
     res.render('landing');
@@ -111,7 +114,7 @@ var PORT = process.env.PORT || 3000;
 //Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync().then(function() {
     // return Habits.create({
-    //     habit: 'Others'
+    //     habit: 'Smoking'
     // })
     app.listen(PORT, function(err) {
         if (err) {
