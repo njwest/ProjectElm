@@ -6,7 +6,7 @@ var methodOverride = require('method-override');
 var app = express();
 require('dotenv').config({silent: true});
 
-
+var Habits = require('./models')['Habits']
 
 //App middleware -------------------------------------------/
 app.use(methodOverride('_method'));
@@ -57,8 +57,19 @@ app.get('/:username/profile', function(req, res){
 
 //Registration
 app.get('/registration', function(req, res){
-    res.render('registration');
-});
+    Habits.findAll({}).then(function(results){
+        console.log(results[0].habit);
+        return res.render('registration', {
+            habits: results
+        });
+    });
+})
+app.get('/api/registration', function(req, res){
+    Habits.findAll({}).then(function(results){
+        // console.log(results);
+        return res.json(results);
+    });
+})
 
 app.post('/registration', function(req, res) {
     'user strict';
@@ -92,13 +103,16 @@ app.post('/user/:username', function(req, res){
 })
 
 //Database config ---------------------------------------/
-global.db = require('./models');
+global.db = require('./models')
 
 //Port config ---------------------------------------------------/
 var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync().then(function() {
+    // return Habits.create({
+    //     habit: 'Others'
+    // })
     app.listen(PORT, function(err) {
         if (err) {
             console.error(err);
