@@ -43,10 +43,10 @@ app.get('/login', function(req, res) {
 });
 
 app.post('/login', function(req, res) {
-    connection.query('INSERT INTO plans (plan) VALUES (?)', [req.body.plan], function(err, result) {
-      if (err) throw err;
-      res.redirect('/');
-    });
+    // connection.query('INSERT INTO plans (plan) VALUES (?)', [req.body.plan], function(err, result) {
+    //   if (err) throw err;
+    //   res.redirect('/');
+    // });
 });
 
 
@@ -62,11 +62,22 @@ app.get('/registration', function(req, res){
 
 app.post('/registration', function(req, res) {
     'user strict';
-    User.create({ username: 'barfooz', email: 'test', password: 'password' }, { fields: [ 'username', 'email', 'password' ] }).then(function(user) {
-      console.log(user.get({
-        plain: true
-      }))
-    })
+    // User.create({ username: 'barfooz', email: 'test', password: 'password' }, { fields: [ 'username', 'email', 'password' ] }).then(function(user) {
+    //   console.log(user.get({
+    //     plain: true
+    //   }))
+    // })
+    var user = req.body;
+
+    User.create({
+        email: user.email,
+        name: user.name,
+        //Julian work your magic here
+        password: user.password,
+        habit: user.habit,
+    }).then(function(insertedUser){
+        console.log(insertedUser.dataValues)
+    });
 });
 //Account routes
 app.get('/user/:username', function(req, res) {
