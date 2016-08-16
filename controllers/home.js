@@ -1,7 +1,3 @@
-var Habits          = require('../models')['Habits'];
-var Achievements    = require('../models')['Achievements'];
-var Users           = require('../models')['User'];
-var UserHabits      = require('../models')['Userhabits'];
 
 module.exports = {
     //Landing Page _________________________________/
@@ -28,7 +24,7 @@ module.exports = {
     },
     //Registration _________________________________/
     renderRegistration: function(req, res){
-        Habits.findAll({}).then(function(results){
+        db.Habits.findAll({}).then(function(results){
             console.log(results[0].habit);
             return res.render('registration', {
                 habits: results
@@ -39,7 +35,7 @@ module.exports = {
         'user strict';
         var user = req.body;
 
-        User.create({
+        db.User.create({
             email: user.email,
             name: user.name,
             //Julian work your magic here
