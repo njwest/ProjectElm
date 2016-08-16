@@ -18,7 +18,7 @@ module.exports = {
 
   down: function (queryInterface, Sequelize) {
 
-    return models.Habits.destroy({where:{fandom: [
+    return models.Habits.destroy({where:{habit: [
         "Smoking",
         "Nail-biting",
         "Drinking",
