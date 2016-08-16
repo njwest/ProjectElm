@@ -8,7 +8,7 @@
                     Log-in to your account
                 </div>
             </h2>
-            <form class="ui form" id=registration>
+            <form class="ui form" id="registration">
                 <div class="field">
                     <label>Username</label>
                     <input type="text" name="username" placeholder="Username"></input>
@@ -19,7 +19,7 @@
                         <input type="hidden" name="selection" value="">
                         <i class="dropdown icon"></i>
                         <div class="default text">Select</div>
-                        <div class="menu transition visible" tabindex="-1" style="display: block !important;">
+                        <div class="menu transition hidden" id="selectHabit" tabindex="-1" style="display: block !important;">
                             {{#each habits}}
                                 <div class="item" data-value="{{this.habit}}">
                                     {{this.habit}}
