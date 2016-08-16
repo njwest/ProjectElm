@@ -3,8 +3,13 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Habits = sequelize.define('Habits', {
-    habit: DataTypes.STRING,
-    achievement: DataTypes.STRING
+    habit: {
+        type: DataTypes.STRING,
+        unique: true
+    },
+    achievement: {
+        type: DataTypes.STRING,
+    }
   }, {
     classMethods: {
       associate: function(models) {

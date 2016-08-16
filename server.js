@@ -23,13 +23,19 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 //Routes_____________________________________________________/
+//serves static pages
+var htmlRoutes = require('./controllers/routes/htmlRoutes')(app);
+var apiRoutes = require('./controllers/routes/apiRoutes')(app);
+// var landingPage = require('./controllers/routes/landingRoutes')(app);
+// var login = require('./controllers/routes/loginRoutes')(app);
+
+
 //serves static pages in the public folder
 app.use(express.static('public'));
 //Landing Page route
 app.get('/', function(req, res) {
     res.render('landing');
 });
-
 
 //Login _________________________________/
 app.get('/login', function(req, res) {
@@ -42,6 +48,7 @@ app.post('/login', function(req, res) {
       res.redirect('/');
     });
 });
+
 
 //Profile _________________________________/
 app.get('/:username/profile', function(req, res){
@@ -83,6 +90,7 @@ db.sequelize.sync({force:true}).then(function() {
             console.error(err);
         } else {
             console.info("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+            console.log(process.env)
         }
     });
 });

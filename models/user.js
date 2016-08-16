@@ -7,14 +7,26 @@ module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         isEmail: true
       }
     },
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    habit: DataTypes.STRING,
-    streak: DataTypes.INTEGER
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false 
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    habit: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    streak: {
+        type: DataTypes.INTEGER
+    }
   }, {
     instanceMethods: {
       generateHash: function(password){
