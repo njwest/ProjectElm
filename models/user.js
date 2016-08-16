@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     username: {
         type: DataTypes.STRING,
-        allowNull: false 
+        allowNull: false
     },
     password: {
         type: DataTypes.STRING,
@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     habit: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     streak: {
         type: DataTypes.INTEGER

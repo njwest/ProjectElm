@@ -4,10 +4,6 @@ var bodyParser      = require('body-parser');
 var exphbs          = require('express-handlebars');
 var methodOverride  = require('method-override');
 var app             = express();
-var Habits          = require('./models')['Habits'];
-var Achievements    = require('./models')['Achievements'];
-var Users           = require('./models')['User'];
-var UserHabits      = require('./models')['Userhabits'];
 require('dotenv').config({silent: true});
 
 //App middleware -------------------------------------------/
