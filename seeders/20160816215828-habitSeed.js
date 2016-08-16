@@ -10,7 +10,8 @@ module.exports = {
         {habit: "Nail-biting"},
         {habit: "Drinking"},
         {habit: "Being late"},
-        {habit: "Fapping"}
+        {habit: "Fapping"},
+        {habit: "Other"}
       ]
     )
   },
@@ -22,7 +23,8 @@ module.exports = {
         "Nail-biting",
         "Drinking",
         "Being late",
-        "Fapping"
+        "Fapping",
+        "Other"
     ]}})
   }
 };
