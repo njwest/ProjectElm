@@ -1,8 +1,4 @@
 var homeController = require('../home');
-var Habits          = require('../../models')['Habits'];
-var Achievements    = require('../../models')['Achievements'];
-var Users           = require('../../models')['User'];
-var UserHabits      = require('../../models')['Userhabits'];
 module.exports = function(app) {
     //Landing Page _________________________________/
     app.get('/', homeController.renderLanding);
