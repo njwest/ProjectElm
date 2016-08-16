@@ -19,7 +19,14 @@
                     <div class="ui selection dropdown">
                         <input type="hidden" name="selection" value="">
                         <i class="dropdown icon"></i>
-
+                        <div class="default text">Select</div>
+                        <div class="menu transition visible" tabindex="-1" style="display: block !important;">
+                            {{#each habits}}
+                                <div class="item" data-value="{{this.habit}}">
+                                    {{this.habit}}
+                                </div>
+                            {{/each}}
+                        </div>
                     </div>
                     <label>Other</label>
                     <input type="text" name="new-habit" value="">
