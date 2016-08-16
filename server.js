@@ -86,6 +86,9 @@ app.get('/user/:username', function(req, res) {
 
 app.post('/user/:username', function(req, res){
     'use strict';
+    userHabit.update({
+        //update logic here
+    })
 })
 
 //Database config ---------------------------------------/
@@ -101,7 +104,6 @@ db.sequelize.sync({force:true}).then(function() {
             console.error(err);
         } else {
             console.info("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
-            console.log(process.env)
         }
     });
 });
