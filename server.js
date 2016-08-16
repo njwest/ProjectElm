@@ -24,8 +24,8 @@ app.set('view engine', 'handlebars');
 
 //Routes_____________________________________________________/
 //serves static pages
-var htmlRoutes = require('./controllers/routes/htmlRoutes')(app);
-var apiRoutes = require('./controllers/routes/apiRoutes')(app);
+// var htmlRoutes = require('./controllers/routes/htmlRoutes')(app);
+// var apiRoutes = require('./controllers/routes/apiRoutes')(app);
 // var landingPage = require('./controllers/routes/landingRoutes')(app);
 // var login = require('./controllers/routes/loginRoutes')(app);
 
