@@ -12,23 +12,20 @@
                 <div class="field">
                     <label>Username</label>
                     <input type="text" name="username" placeholder="Username"></input>
+
                     <label>Email</label>
                     <input type="text" name="email" placeholder="john.smith@email.com"></input>
+
                     <label>Habit you want to break </label>
-                    <div class="ui selection dropdown">
-                        <input type="hidden" name="selection" value="">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Select</div>
-                        <div class="menu transition hidden" id="selectHabit" tabindex="-1" style="display: block !important;">
-                            {{#each habits}}
-                                <div class="item" data-value="{{this.habit}}">
-                                    {{this.habit}}
-                                </div>
-                            {{/each}}
-                        </div>
-                    </div>
-                    <label>Other</label>
-                    <input type="text" name="new-habit" value="">
+
+                    <select name="habit">
+                      {{#each habits}}
+                          <option class="item" data-value="{{this.habit}}">
+                              {{this.habit}}
+                          </option>
+                      {{/each}}
+                    </select>
+
                     <label>Password</label>
                     <input type="password" id="password" name="password" placeholder="password@123">
                     <label>Re-Enter Password</label>
