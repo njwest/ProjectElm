@@ -1,4 +1,5 @@
 var bcrypt = require('bcrypt-nodejs');
+var passport = require('passport');
 module.exports = {
     //Landing Page _________________________________/
     renderLanding: function(req, res) {
@@ -9,12 +10,36 @@ module.exports = {
         res.render('login');
     },
     postLogin: function(req, res) {
+
         // connection.query('INSERT INTO plans (plan) VALUES (?)', [req.body.plan], function(err, result) {
         //   if (err) throw err;
         //   res.redirect('/');
         // });
         var email = req.body.email;  
         var password = req.body.password;
+        var dbPassword = db.Users.findOne({
+            where:{
+                username: req.body.username
+            }
+        }).then(function(dbUser){
+            if (!dbUser) {
+              res.json({
+                message: "User not found"
+              });
+            } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
+              res.json(dbUser.dataValues);
+            } else {
+              //if the password is invalid, we'll let the user know
+              res.json({
+                message: "Invalid Password"
+              });
+            }
+        });
+
+        bcrypt.compare(password, hash, function(err, res) {
+            // res == true
+        });
+
         // db.Users.findAll({})
           
         // connection.query('USE DatabaseName', function(err, result) {    

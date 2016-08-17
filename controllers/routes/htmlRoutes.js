@@ -13,6 +13,4 @@ module.exports = function(app) {
     //Profile _________________________________/
     app.get('/:username/profile', homeController.renderProfile);
     app.post('/:username/profile', homeController.submitButton)
-
-
 };
