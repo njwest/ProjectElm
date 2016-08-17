@@ -28,9 +28,8 @@ app.use('/', express.static(__dirname + '/public'));
 var htmlRoutes = require('./controllers/routes/htmlRoutes')(app);
 var apiRoutes = require('./controllers/routes/apiRoutes')(app);
 
-
 //Database config ---------------------------------------/
-global.db = require('./models')
+global.db = require('./models');
 
 //Port config ---------------------------------------------------/
 var PORT = process.env.PORT || 3000;
