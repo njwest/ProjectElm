@@ -9,7 +9,7 @@
                 </div>
             </h2>
             <form class="ui form" id="registration">
-                <div class="field">
+                < div class="field">
                     <label>Username</label>
                     <input type="text" name="username" placeholder="Username"></input>
 
@@ -17,7 +17,6 @@
                     <input type="text" name="email" placeholder="john.smith@email.com"></input>
 
                     <label>Habit you want to break </label>
-
                     <select name="habit">
                       {{#each habits}}
                           <option class="item" data-value="{{this.habit}}">
@@ -31,7 +30,7 @@
                     <label>Re-Enter Password</label>
                     <input type="password" id="check_password" name="renter-password" placeholder="password@123"></input>
                 </div>
-                <button class="ui button" type="submit">Submit</button>
+                <button class="ui button" type="submit" method="post"  action="/resource?_method=POST">Submit</button>
             </form>
         </div>
     <div>

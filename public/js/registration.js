@@ -10,3 +10,7 @@ $('#check_password').on('keyup', function () {
 $('#registration').click(function(){
     $('#selectHabit').toggleClass('hidden');
 })
+
+$('#other').click(function(){
+    $('this').toggleClass('hidden')
+})
