@@ -12,5 +12,5 @@ module.exports = function(app) {
 
     //Registration _________________________________/
     app.get('/registration', homeController.renderRegistration);
-    app.post('/registration', homeController.postUser);
+    app.post('/:username/profile', homeController.postUser);
 };

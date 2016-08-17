@@ -34,10 +34,11 @@ module.exports = {
     postUser: function(req, res){
         'user strict';
         var user = req.body;
-
+        console.log(user);
+        res.render('profile');
         db.User.create({
             email: user.email,
-            name: user.name,
+            username: user.username,
             //Julian work your magic here
             password: user.password,
             habit: user.habit,
