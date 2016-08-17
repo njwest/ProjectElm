@@ -25,7 +25,6 @@
     "express-handlebars": "^3.0.0",
     "method-override": "^2.3.6",
     "mysql": "^2.11.1",
-    "semantic-ui": "^2.2.2",
     "sequelize": "^3.23.6"
   }
 }
