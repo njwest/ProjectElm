@@ -13,3 +13,16 @@ sequelize
   });
 
   // sequelize database for chat
+
+
+var message = sequelize.define('message', {
+  chatMessage: Sequelize.STRING
+});
+
+sequelize
+  .sync({ force: true })
+  .then(function(err) {
+    console.log('It worked!');
+  }, function (err) { 
+    console.log('An error occurred while creating the table:', err);
+  });
