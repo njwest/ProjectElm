@@ -1,4 +1,5 @@
 var homeController = require('../home');
+var passport = require('passport');
 module.exports = function(app) {
     //Landing Page _________________________________/
     app.get('/', homeController.renderLanding);
@@ -11,6 +12,6 @@ module.exports = function(app) {
     app.post('/new_user/profile', homeController.postUser);
 
     //Profile _________________________________/
-    app.get('/:username/profile', homeController.renderProfile);
-    app.post('/:username/profile', homeController.submitButton)
+    app.get('/users/:username', homeController.renderProfile);
+    app.post('/users/:username', homeController.submitButton)
 };
