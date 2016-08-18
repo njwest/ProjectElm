@@ -3,16 +3,46 @@ var express         = require('express');
 var bodyParser      = require('body-parser');
 var exphbs          = require('express-handlebars');
 var methodOverride  = require('method-override');
+var cookieParser    = require('cookie-parser');
+var passport        = require('passport');
+var LocalStrategy   = require('passport-local');
+var logger          = require('morgan');
+var session         = require('express-session');
 var app             = express();
 require('dotenv').config({silent: true});
 
 //App middleware -------------------------------------------/
+app.use(logger('combined'));
+app.use(cookieParser());
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+app.use(session({secret: 'supernova', saveUninitialized: true, resave: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// Session-persisted message middleware
+app.use(function(req, res, next){
+  var err = req.session.error,
+      msg = req.session.notice,
+      success = req.session.success;
+
+  delete req.session.error;
+  delete req.session.success;
+  delete req.session.notice;
+
+  if (err) res.locals.error = err;
+  if (msg) res.locals.notice = msg;
+  if (success) res.locals.success = success;
+
+  next();
+});
 app.use(bodyParser.json());
-app.use(express.static(process.cwd() + "/public"));
+
+// app.use(express.static(process.cwd() + "/public"));
 
 //Handlebars config ---------------------------------------/
 app.engine('handlebars', exphbs({
