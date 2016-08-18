@@ -1,58 +1,48 @@
+<div class="escalate">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="card-panel col s12">
+              <h2 class="center">Register</h2>
+              <div class="card-panel col m8 offset-m2 s12">
+
+                <form class="" id="registration" method="POST" action="/new_user/profile">
+
+                    <div class="">
+
+                        <label>Username</label>
+
+                        <input type="text" name="username" placeholder="Username"></input>
+
+                        <label>Email</label>
+
+                        <input type="text" name="email" placeholder="john.smith@email.com"></input>
 
 
-<div class="container">
-
-    <div class="row">
-
-        <div class="card-panel col s12 m6">
-
-            <h2>Register</h2>
-
-            <form class="" id="registration" method="POST" action="/new_user/profile">
-
-                <div class="">
-
-                    <label>Username</label>
-
-                    <input type="text" name="username" placeholder="Username"></input>
-
-                    <label>Email</label>
-
-                    <input type="text" name="email" placeholder="john.smith@email.com"></input>
+                        <div class="form-group">
+                            <label for="sel1">Habit you want to break:</label>
+                            <select class="form-control" id="sel1">
+                                <option>Smoking</option>
+                                <option>Procrastinating</option>
+                                <option>Nail-biting</option>
+                                <option>Drinking</option>
+                            </select>
+                        </div>
 
 
-                    <label>Habit you want to break </label>
+                        <label>Password</label>
 
-                    <div class="form-group">
-  <label for="sel1">Select list:</label>
-  <select class="form-control" id="sel1">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-  </select>
-</div>
-                    <!-- <select name="habit" class-"browser-default">
-                      <option>Smoking</option>
-                      <option>Other</option>
-                        {{#each habits}}
+                        <input type="password" id="password" name="password" placeholder="password@123">
+                        <label>Re-Enter Password</label>
 
-                            <option class="item" data-value="{{this.habit}}">
-                                {{this.habit}}                          </option>
-                            {{/each}}
-                        </select> -->
+                        <input type="password" id="check_password" name="renter-password" placeholder="password@123"></input>
+                    </div>
 
-
-                    <label>Password</label>
-
-                    <input type="password" id="password" name="password" placeholder="password@123">
-                    <label>Re-Enter Password</label>
-
-                      <input type="password" id="check_password" name="renter-password" placeholder="password@123"></input>
-                </div>
-
-                <button class="ui button" type="submit" id="submit">Submit</button>
+                    <button class="waves-effect waves-purple btn-large black register" type="submit" id="submit">Submit</button>
                 </form>
             </div>
           </div>
         </div>
+    </div>
+</div>

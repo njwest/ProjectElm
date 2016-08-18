@@ -73,11 +73,12 @@ renderProfile: function(req, res) {
     },
     //Registration _________________________________/
     renderRegistration: function(req, res) {
-        db.Habits.findAll({}).then(function(results) {
-            return res.render('registration', {
-                habits: results
-            });
-        });
+      res.render('registration');
+    //     db.Habits.findAll({}).then(function(results) {
+    //         return res.render('registration', {
+    //             habits: results
+    //         });
+    //     });
     },
     postUser: function(req, res) {
         'user strict';

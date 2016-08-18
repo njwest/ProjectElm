@@ -1,8 +1,21 @@
-body.home{
+.home{
   background-color: #000;
   background-image: url("../img/escalator.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
+  margin-top: -50px;
+}
+
+.escalate{
+  background-color: #000;
+  background-image: url("../img/escalator.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+button.register{
+width: 100%;
+margin-bottom: 10px;
 }
 
 h1, h2, h3, h4, h5{
@@ -22,18 +35,16 @@ h1, h2, h3, h4, h5{
   background-color: #96CDCD;
 }
 
-button.white{
+a.white{
   color: #000;
   font-weight: 600;
+  text-decoration: none;
 }
 
-button.black{
+a.black{
   color: #fff;
   font-weight: 600;
-}
-
-button.gray{
-  font-weight: 550;
+  text-decoration: none;
 }
 
 .profile{
