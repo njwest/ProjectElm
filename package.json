@@ -26,7 +26,6 @@
     "method-override": "^2.3.6",
     "mysql": "^2.11.1",
     "passport": "^0.3.2",
-    "semantic-ui": "^2.2.2",
     "sequelize": "^3.23.6"
   }
 }
