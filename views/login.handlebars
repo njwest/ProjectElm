@@ -1,32 +1,43 @@
-<div class="ui middle aligned center aligned grid">
-    <div class="col-md-3">
-        <h2 class="ui teal image header">
-          <div class="content">
-            Log-in to your account
-          </div>
-        </h2>
-        <form class="ui large form" action="/something/login" method="POST">
-            <div class="ui stacked segment">
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        <input type="text" name="username" placeholder="Username" id="username">
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="Password" id="username">
-                    </div>
-                </div>
-                <button class="ui button" type="submit" id="login">Login</button>
-            </div>
+<body class="escalate">
+    <div class="container">
 
-            <div class="ui error message"></div>
+        <div class="row">
+
+            <div class="card-panel col s12">
+              <h2 class="center">Log In</h2>
+              <div class="card-panel col m8 offset-m2 s12">
+
+                <form class="" action="/something/login" method="POST">
+                    <div class="">
+                        <div class="field">
+                            <div class="">
+                                <i class="user icon"></i>
+                                <input type="text" name="username" placeholder="Username" id="username">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password" id="username">
+                            </div>
+                        </div>
+                        <button class="waves-effect waves-yellow btn-large black register" type="submit" id="login">Login</button>
+                    </div>
+
+
 
         </form>
         <div class="ui message">
             New to us? <a href="http://semantic-ui.com/examples/login.html#">Sign Up</a>
         </div>
+
+                </form>
+
+            </div>
+          </div>
+        </div>
     </div>
 </div>
+
+    </div>
+</body>

@@ -32,7 +32,7 @@
             <button class="btn green" id="yes">Yes!</button>
               <br/>
               <br/>
-            <button class="btn red darken-3 resetButton">No...</button>
+            <button class="btn red darken-3 resetButton" id="no">No...</button>
 
             <h5>Goal: 10 Days {{habit}} Free</h5>
 
@@ -64,18 +64,56 @@
 
   <script type="text/javascript">
 
-    var value = {{streak}};
-        var $toastContent = $('<span>I am toast content</span>');
-      $('#yes').on('click',(function(){
-        value += 10;
-        $('.progress-bar').css('width', value+'%').attr('aria-valuenow', value);
+     $(document).ready(function(){
+    
+     	var today = new Date();
+     	today = today.toISOstring();
+     	// returns 2016-08-19T16:55:45.635Z
+     	today = today.substr(0,10);
+     	// returns 2016-08-19
+     	today = today.replace(/-/g, "");
+     	// returns 20160819
+        today = parseInt(today);
+        
+        $.ajax({
+			    type: "GET",
+			    url: 'http://localhost:3000/compare',
+			    dataType: "json",
+			    async: true,
+			    success: function(data) {
+			      
+			      	var oldTimestamp = data;
+			      	oldTimestamp = oldTimestamp.toISOstring();
+			      	// returns 2016-08-18T16:55:45.635Z
+			      	oldTimestamp = oldTimestamp.substr(0,10);
+			      	// returns 2016-08-18
+			      	oldTimestamp = oldTimestamp.replace(/-/g, "");
+			      	// returns 20160818
+			      	oldTimestamp = parseInt(oldTimestamp);
 
-      }));
+			      	if(today - oldTimestamp < 1){
+			      		$('#yes').attr('disabled', true);
+			      		//so essentially when you convert days to numbers you get 20160818 and 20160819
+			      		//if one day has passed, subtracting current day from the previous should equal 1
+			      	}
+			      	if(today - oldTimestamp > 1){
+			      		$.post('http://localhost:3000/compare');
+			      	}
+			      
+			    }
+			  });
 
-      if (value == 100){
+        $('#yes').on('click', function(){
+        	$.post('http://localhost:3000/streak');
 
-        Materialize.toast($toastContent, 5000);
-      }
+          this.attr('disabled', true);
+        })
+
+        $('#no').on('click', function(){
+        	$.post('http://localhost:3000/compare');
+        })
+
+     })
 
   </script>
 
