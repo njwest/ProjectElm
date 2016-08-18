@@ -70,10 +70,7 @@ module.exports = {
 
 };
 
-//Login _________________________________/
-
-
-//Profile _________________________________/
+//Profile
 
 //Registration
 

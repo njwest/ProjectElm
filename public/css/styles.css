@@ -3,6 +3,19 @@ body.home{
   background-image: url("../img/escalator.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
+  margin-top: -100px;
+}
+
+.escalate{
+  background-color: #000;
+  background-image: url("../img/escalator.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+button.register{
+width: 100%;
+margin-bottom: 10px;
 }
 
 h1, h2, h3, h4, h5{
