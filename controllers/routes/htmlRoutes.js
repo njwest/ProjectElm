@@ -4,7 +4,7 @@ module.exports = function(app) {
     app.get('/', homeController.renderLanding);
     //Login _________________________________/
     app.get('/login', homeController.renderLogin);
-    app.post('/login', homeController.postLogin);
+    app.post('/something/login', homeController.postLogin);
 
     //Registration _________________________________/
     app.get('/registration', homeController.renderRegistration);
