@@ -1,11 +1,11 @@
 var homeController = require('../home');
-var passport = require('passport');
+
 module.exports = function(app) {
     //Landing Page _________________________________/
     app.get('/', homeController.renderLanding);
     //Login _________________________________/
     app.get('/login', homeController.renderLogin);
-    app.post('/something/login', homeController.postLogin);
+    app.post('/something/login',homeController.postLogin);
 
     //Registration _________________________________/
     app.get('/registration', homeController.renderRegistration);
