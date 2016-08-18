@@ -3,20 +3,35 @@
     <head>
         <meta charset="utf-8">
         <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- <link rel="stylesheet" type="text/css" href="/css/semantic/semantic.css"> -->
-        <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="/css/materialize.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Lato">
+
+          <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
+          <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+          <script type="text/javascript" src="/js/materialize.js"></script>
+          <script type="text/javascript" src="/js/registration.js"></script>
+
 
         <title>Impulsion | The Habit Breaking App</title>
     </head>
     <body>
-        {{{body}}}
-        <!-- <script src="/css/semantic/semantic.js"></script> -->
-        <script src="/semantic/dist/semantic.min.js"></script>
-        <!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script> -->
+        {{#if error}}
+          <p class="alert alert-warning">{{error}}</p>
+        {{/if}}
 
-        <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/js/registration.js"></script>
+        {{#if success}}
+          <p class="alert alert-success">{{success}}</p>
+        {{/if}}
+
+        {{#if notice}}
+          <p class="alert alert-info">{{notice}}</p>
+        {{/if}}
+
+        {{{body}}}
+
+
+
     </body>
 </html>

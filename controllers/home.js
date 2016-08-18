@@ -1,50 +1,80 @@
+var bcrypt = require('bcrypt-nodejs');
+var session = require('express-session');
 
 module.exports = {
     //Landing Page _________________________________/
     renderLanding: function(req, res) {
-            res.render('landing');
+        // if(req.session){
+        //     res.redirect('/users/' + req.session.username);
+        // } else {
+        res.render('landing');
+        // }
+
     },
     //Login _________________________________/
-    renderLogin: function(req,res) {
+    renderLogin: function(req, res) {
         res.render('login');
     },
-    postLogin: function(req, res){
-        // connection.query('INSERT INTO plans (plan) VALUES (?)', [req.body.plan], function(err, result) {
-        //   if (err) throw err;
-        //   res.redirect('/');
-        // });
+    postLogin: function(req, res, next) {
+        var email = req.body.email;  
+        var password = req.body.password;
+        var dbUser = db.User.findOne({
+            where: {
+                username: req.body.username
+            }
+        }).then(function(dbUser) {
+            if (!dbUser) {
+                req.session.reset();
+                res.json({
+                    message: "User not found"
+                });
+            } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
+                req.user = dbUser
+                delete req.user.password
+                req.session.user = dbUser;
+                res.locals.user = dbUser
+                res.redirect('/users/' + dbUser.username);
+            } else {
+                //if the password is invalid, we'll let the user know
+                res.json({
+                    message: "Invalid Password"
+                });
+            }
+        });
     },
 
     //Profile _________________________________/
-    renderProfile: function(req, res){
+    renderProfile: function(req, res) {
+        console.log(req.user);
         res.render('profile');
+
     },
-    submitButton: function(req, res){
+    submitButton: function(req, res) {
 
     },
     //Registration _________________________________/
-    renderRegistration: function(req, res){
-        db.Habits.findAll({}).then(function(results){
-            console.log(results[0].habit);
-            return res.render('registration', {
-                habits: results
-            });
-        });
+    renderRegistration: function(req, res) {
+        res.render('registration');
     },
-    postUser: function(req, res){
+    postUser: function(req, res) {
         'user strict';
+        var salt = bcrypt.genSaltSync(10);
         var user = req.body;
-        console.log(user);
-        res.render('profile');
+        var hash = bcrypt.hashSync(user.password, salt);
+
         db.User.create({
-            email: user.email,
-            username: user.username,
-            //Julian work your magic here
-            password: user.password,
-            habit: user.habit,
-        }).then(function(insertedUser){
-            console.log(insertedUser.dataValues)
-        });
+                email: user.email,
+                username: user.username,
+                password: hash,
+                habit: user.habit,
+            })
+            .catch(function(err) {
+                res.json({
+                    message: err.message
+                });
+            });
+        res.render('profile');
+
     },
 
 
