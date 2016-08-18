@@ -1,53 +1,60 @@
 var bcrypt = require('bcrypt-nodejs');
-// var passport = require('passport');
+var session = require('express-session');
+
 module.exports = {
     //Landing Page _________________________________/
     renderLanding: function(req, res) {
+        // if(req.session){
+        //     res.redirect('/users/' + req.session.username);
+        // } else {
         res.render('landing');
+        // }
+
     },
     //Login _________________________________/
     renderLogin: function(req, res) {
         res.render('login');
     },
-    postLogin: function(req, res) {
+    postLogin: function(req, res, next) {
         var email = req.body.email;  
         var password = req.body.password;
         var dbUser = db.User.findOne({
-            where:{
+            where: {
                 username: req.body.username
             }
-        }).then(function(dbUser){
+        }).then(function(dbUser) {
             if (!dbUser) {
-              res.json({
-                message: "User not found"
-              });
-            }
-            else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
-              res.redirect('/users/' + dbUser.username);
+                req.session.reset();
+                res.json({
+                    message: "User not found"
+                });
+            } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
+                req.user = dbUser
+                delete req.user.password
+                req.session.user = dbUser;
+                res.locals.user = dbUser
+                res.redirect('/users/' + dbUser.username);
             } else {
-              //if the password is invalid, we'll let the user know
-              res.json({
-                message: "Invalid Password"
-              });
+                //if the password is invalid, we'll let the user know
+                res.json({
+                    message: "Invalid Password"
+                });
             }
         });
     },
 
     //Profile _________________________________/
     renderProfile: function(req, res) {
+        console.log(req.user);
         res.render('profile');
+
     },
     submitButton: function(req, res) {
 
     },
     //Registration _________________________________/
     renderRegistration: function(req, res) {
-      res.render('registration');
-    //     db.Habits.findAll({}).then(function(results) {
-    //         return res.render('registration', {
-    //             habits: results
-    //         });
-    //     });
+        res.render('registration');
     },
     postUser: function(req, res) {
         'user strict';
@@ -56,14 +63,16 @@ module.exports = {
         var hash = bcrypt.hashSync(user.password, salt);
 
         db.User.create({
-            email: user.email,
-            username: user.username,
-            password: hash,
-            habit: user.habit,
-        })
-        .catch(function(err){
-            res.json({message: err.message});
-        });
+                email: user.email,
+                username: user.username,
+                password: hash,
+                habit: user.habit,
+            })
+            .catch(function(err) {
+                res.json({
+                    message: err.message
+                });
+            });
         res.render('profile');
 
     },
