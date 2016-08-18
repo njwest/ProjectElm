@@ -2162,7 +2162,7 @@
  *  21. Footer
  *  22. Flow Text
  *  23. Collections
- *  24. Progress Bar
+ *  24. progressMaterialize Bar
  */
 /* 1. Colors
    ========================================================================== */
@@ -2210,7 +2210,7 @@
    ========================================================================== */
 /* 23. Collections
    ========================================================================== */
-/* 24. Progress Bar
+/* 24. progressMaterialize Bar
    ========================================================================== */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
@@ -2260,11 +2260,11 @@ summary {
 
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
- * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ * 2. Normalize vertical alignment of `progressMaterialize` in Chrome, Firefox, and Opera.
  */
 audio,
 canvas,
-progress,
+progressMaterialize,
 video {
   display: inline-block;
   /* 1 */
@@ -3228,7 +3228,7 @@ nav ul a span.badge {
   height: 100%;
 }
 
-.progress {
+.progressMaterialize {
   position: relative;
   height: 4px;
   display: block;
@@ -3239,7 +3239,7 @@ nav ul a span.badge {
   overflow: hidden;
 }
 
-.progress .determinate {
+.progressMaterialize .determinate {
   position: absolute;
   top: 0;
   left: 0;
@@ -3248,11 +3248,11 @@ nav ul a span.badge {
   transition: width .3s linear;
 }
 
-.progress .indeterminate {
+.progressMaterialize .indeterminate {
   background-color: #26a69a;
 }
 
-.progress .indeterminate:before {
+.progressMaterialize .indeterminate:before {
   content: '';
   position: absolute;
   background-color: inherit;
@@ -3264,7 +3264,7 @@ nav ul a span.badge {
           animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
 }
 
-.progress .indeterminate:after {
+.progressMaterialize .indeterminate:after {
   content: '';
   position: absolute;
   background-color: inherit;
