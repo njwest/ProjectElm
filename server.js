@@ -3,16 +3,34 @@ var express         = require('express');
 var bodyParser      = require('body-parser');
 var exphbs          = require('express-handlebars');
 var methodOverride  = require('method-override');
+// var cookieParser    = require('cookie-parser');
+var passport        = require('passport');
+var LocalStrategy   = require('passport-local');
+var logger          = require('morgan');
+var session         = require('express-session');
 var app             = express();
 require('dotenv').config({silent: true});
 
 //App middleware -------------------------------------------/
+app.use(logger('combined'));
+// app.use(cookieParser());
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'speakeasyconservatory',
+  resave: false,
+  cookie: {
+    maxAge: 60000 * 60 * 24 * 14,
+    secure: true
+  }
+}));
+
 app.use(bodyParser.json());
-app.use(express.static(process.cwd() + "/public"));
+
+// app.use(express.static(process.cwd() + "/public"));
 
 //Handlebars config ---------------------------------------/
 app.engine('handlebars', exphbs({
@@ -28,9 +46,8 @@ app.use('/', express.static(__dirname + '/public'));
 var htmlRoutes = require('./controllers/routes/htmlRoutes')(app);
 var apiRoutes = require('./controllers/routes/apiRoutes')(app);
 
-
 //Database config ---------------------------------------/
-global.db = require('./models')
+global.db = require('./models');
 
 //Port config ---------------------------------------------------/
 var PORT = process.env.PORT || 3000;
