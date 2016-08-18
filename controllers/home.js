@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt-nodejs');
-var passport = require('passport');
+// var passport = require('passport');
 module.exports = {
     //Landing Page _________________________________/
     renderLanding: function(req, res) {
@@ -23,9 +23,7 @@ module.exports = {
               });
             }
             else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
-              res.json(dbUser.dataValues);
-            // else if( dbUser){
-            //     res.json(dbUser.dataValues);
+              res.redirect('/users/' + dbUser.username);
             } else {
               //if the password is invalid, we'll let the user know
               res.json({
@@ -33,39 +31,10 @@ module.exports = {
               });
             }
         });
-
-        // bcrypt.compare(password, hash, function(err, res) {
-        //     res == true
-        // });
-
-        // db.Users.findAll({})
-          
-        // connection.query('USE DatabaseName', function(err, result) {    
-        //     if (err) throw err;  
-        // })  
-        // connection.query('SELECT * FROM Users', function(err, result) {    
-        //     if (err) throw err;
-        //
-        //         
-        //     for (i = 0; i < result.length; i++) {      
-        //         if (email == result[i].email) {        
-        //             var sqlEmail = result[i].email;        
-        //             return sqlEmail;      
-        //         }
-        //
-        //             
-        //     }.then(sqlEmail) {      
-        //         connection.query('SELECT * FROM User WHERE Email=' + sqlEmail, function(err, result) {        
-        //             if (err) throw err;                
-        //             if (password == result.password) {           //login is succesful
-        //                         }      
-        //         })    
-        //     }  
-        // })
     },
 
-//Profile _________________________________/
-renderProfile: function(req, res) {
+    //Profile _________________________________/
+    renderProfile: function(req, res) {
         res.render('profile');
     },
     submitButton: function(req, res) {
@@ -102,10 +71,7 @@ renderProfile: function(req, res) {
 
 };
 
-//Login _________________________________/
-
-
-//Profile _________________________________/
+//Profile
 
 //Registration
 
