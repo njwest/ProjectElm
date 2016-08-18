@@ -1,4 +1,4 @@
-.home{
+body.home{
   background-color: #000;
   background-image: url("../img/escalator.jpg");
   background-size: 100%;
@@ -35,16 +35,18 @@ h1, h2, h3, h4, h5{
   background-color: #96CDCD;
 }
 
-a.white{
+button.white{
   color: #000;
   font-weight: 600;
-  text-decoration: none;
 }
 
-a.black{
+button.black{
   color: #fff;
   font-weight: 600;
-  text-decoration: none;
+}
+
+button.gray{
+  font-weight: 550;
 }
 
 .profile{
