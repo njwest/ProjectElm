@@ -49,6 +49,8 @@ module.exports = {
         res.render('profile');
 
     },
+
+    
     submitButton: function(req, res) {
 
     },
