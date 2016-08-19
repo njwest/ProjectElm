@@ -6,8 +6,8 @@ module.exports = {
     renderLanding: function(req, res) {
         res.render('landing');
     },
-    isAuthenticated: function(req, res, next){
-        if(req.session.user){
+    isAuthenticated: function(req, res, next) {
+        if (req.session.user) {
             console.log('here')
             return next();
         } else {
@@ -50,18 +50,18 @@ module.exports = {
 
     },
 
-    
+
     submitButton: function(req, res) {
 
     },
     //Registration _________________________________/
     renderRegistration: function(req, res) {
- //        db.Habits.findAll({}).then(function(results){
- // +            res.render('registration', {
- // +                habits: results
- // +            });
- //          });
-        res.render('registration');
+        db.Habits.findAll({}).then(function(results) {
+            res.render('registration', {
+                habits: results
+            });
+        });
+        // res.render('registration');
     },
     postUser: function(req, res) {
         'user strict';
