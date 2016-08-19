@@ -7,7 +7,6 @@ var LocalStrategy   = require('passport-local');
 var logger          = require('morgan');
 var passport        = require('passport');
 var session         = require('express-session');
-var moment          = require('moment');
 var FileStore       = require('session-file-store')(session);
 var app             = express();
 require('dotenv').config({silent: true});
@@ -50,7 +49,7 @@ global.db = require('./models');
 var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync().then(function() {
+db.sequelize.sync({force:true}).then(function() {
     // return Habits.create({
     //     habit: 'Smoking'
     // })
