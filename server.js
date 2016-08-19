@@ -27,11 +27,6 @@ app.use(session({
   }
 }));
 
-// app.use(function printSession(req, res, next) {
-//   console.log('req.session', req.session);
-//   return next();
-// });
-
 app.use(bodyParser.json());
 
 //Handlebars config ---------------------------------------/
