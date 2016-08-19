@@ -1,6 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
 
+
 module.exports = {
     //Landing Page _________________________________/
     renderLanding: function(req, res) {
@@ -33,7 +34,7 @@ module.exports = {
                 });
             } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
                 req.session.user = dbUser.dataValues;
-                delete req.session.user.password;
+                // delete req.session.user.password;
                 res.redirect('/users/' + dbUser.username);
 
             } else {
@@ -46,12 +47,22 @@ module.exports = {
 
     //Profile _________________________________/
     renderProfile: function(req, res) {
-        res.render('profile');
+        res.render('profile', {
+            user: req.session.user
+        });
 
     },
 
 
     submitButton: function(req, res) {
+        //current time
+
+        // db.userhabits.put({
+        //     streak: time,
+        //     userId: req.session.user.id,
+        //     habitId: req.session.user.habitId,
+        // });
+
 
     },
     //Registration _________________________________/
@@ -61,7 +72,6 @@ module.exports = {
                 habits: results
             });
         });
-        // res.render('registration');
     },
     postUser: function(req, res) {
         'user strict';
@@ -74,7 +84,11 @@ module.exports = {
                 username: user.username,
                 password: hash,
                 habit: user.habit,
-            })
+            }).then(
+                db.userhabits.create({
+
+                })
+            )
             .catch(function(err) {
                 res.json({
                     message: err.message
