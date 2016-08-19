@@ -1,84 +1,67 @@
 var bcrypt = require('bcrypt-nodejs');
-var passport = require('passport');
+var session = require('express-session');
+
 module.exports = {
     //Landing Page _________________________________/
     renderLanding: function(req, res) {
         res.render('landing');
     },
+    isAuthenticated: function(req, res, next) {
+        if (req.session.user) {
+            console.log('here')
+            return next();
+        } else {
+            res.redirect('/login');
+        }
+
+    },
     //Login _________________________________/
     renderLogin: function(req, res) {
         res.render('login');
     },
-    postLogin: function(req, res) {
+    postLogin: function(req, res, next) {
         var email = req.body.email;  
         var password = req.body.password;
         var dbUser = db.User.findOne({
-            where:{
+            where: {
                 username: req.body.username
             }
-        }).then(function(dbUser){
+        }).then(function(dbUser) {
             if (!dbUser) {
-              res.json({
-                message: "User not found"
-              });
-            }
-            else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
-              res.json(dbUser.dataValues);
-            // else if( dbUser){
-            //     res.json(dbUser.dataValues);
+                res.json({
+                    message: "User not found"
+                });
+            } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
+                req.session.user = dbUser.dataValues;
+                delete req.session.user.password;
+                res.redirect('/users/' + dbUser.username);
+
             } else {
-              //if the password is invalid, we'll let the user know
-              res.json({
-                message: "Invalid Password"
-              });
+                res.json({
+                    message: "Invalid Password"
+                });
             }
         });
-
-        // bcrypt.compare(password, hash, function(err, res) {
-        //     res == true
-        // });
-
-        // db.Users.findAll({})
-          
-        // connection.query('USE DatabaseName', function(err, result) {    
-        //     if (err) throw err;  
-        // })  
-        // connection.query('SELECT * FROM Users', function(err, result) {    
-        //     if (err) throw err;
-        //
-        //         
-        //     for (i = 0; i < result.length; i++) {      
-        //         if (email == result[i].email) {        
-        //             var sqlEmail = result[i].email;        
-        //             return sqlEmail;      
-        //         }
-        //
-        //             
-        //     }.then(sqlEmail) {      
-        //         connection.query('SELECT * FROM User WHERE Email=' + sqlEmail, function(err, result) {        
-        //             if (err) throw err;                
-        //             if (password == result.password) {           //login is succesful
-        //                         }      
-        //         })    
-        //     }  
-        // })
     },
 
-//Profile _________________________________/
-renderProfile: function(req, res) {
+    //Profile _________________________________/
+    renderProfile: function(req, res) {
         res.render('profile');
+
     },
+
+
     submitButton: function(req, res) {
 
     },
     //Registration _________________________________/
     renderRegistration: function(req, res) {
-      res.render('registration');
-    //     db.Habits.findAll({}).then(function(results) {
-    //         return res.render('registration', {
-    //             habits: results
-    //         });
-    //     });
+        db.Habits.findAll({}).then(function(results) {
+            res.render('registration', {
+                habits: results
+            });
+        });
+        // res.render('registration');
     },
     postUser: function(req, res) {
         'user strict';
@@ -87,26 +70,18 @@ renderProfile: function(req, res) {
         var hash = bcrypt.hashSync(user.password, salt);
 
         db.User.create({
-            email: user.email,
-            username: user.username,
-            password: hash,
-            habit: user.habit,
-        })
-        .catch(function(err){
-            res.json({message: err.message});
-        });
+                email: user.email,
+                username: user.username,
+                password: hash,
+                habit: user.habit,
+            })
+            .catch(function(err) {
+                res.json({
+                    message: err.message
+                });
+            });
         res.render('profile');
 
     },
 
-
 };
-
-//Login _________________________________/
-
-
-//Profile _________________________________/
-
-//Registration
-
-//Account routes

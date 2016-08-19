@@ -3,16 +3,36 @@ var express         = require('express');
 var bodyParser      = require('body-parser');
 var exphbs          = require('express-handlebars');
 var methodOverride  = require('method-override');
+var LocalStrategy   = require('passport-local');
+var logger          = require('morgan');
+var passport        = require('passport');
+var session         = require('express-session');
+var FileStore       = require('session-file-store')(session);
+
 var app             = express();
 require('dotenv').config({silent: true});
 
 //App middleware -------------------------------------------/
+app.use(logger('combined'));
+// app.use(require('morgan')('dev'));
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'speakeasyconservatory',
+  cookie: {
+    maxAge: 60000 * 60 * 24 * 14
+  }
+}));
+
+// app.use(function printSession(req, res, next) {
+//   console.log('req.session', req.session);
+//   return next();
+// });
+
 app.use(bodyParser.json());
-app.use(express.static(process.cwd() + "/public"));
 
 //Handlebars config ---------------------------------------/
 app.engine('handlebars', exphbs({
