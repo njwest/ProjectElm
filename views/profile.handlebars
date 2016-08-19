@@ -65,52 +65,40 @@
   <script type="text/javascript">
 
      $(document).ready(function(){
-    
-     	var today = new Date();
-     	today = today.toISOstring();
-     	// returns 2016-08-19T16:55:45.635Z
-     	today = today.substr(0,10);
-     	// returns 2016-08-19
-     	today = today.replace(/-/g, "");
-     	// returns 20160819
-        today = parseInt(today);
-        
+       
         $.ajax({
 			    type: "GET",
 			    url: 'http://localhost:3000/compare',
 			    dataType: "json",
 			    async: true,
 			    success: function(data) {
-			      
-			      	var oldTimestamp = data;
-			      	oldTimestamp = oldTimestamp.toISOstring();
-			      	// returns 2016-08-18T16:55:45.635Z
-			      	oldTimestamp = oldTimestamp.substr(0,10);
-			      	// returns 2016-08-18
-			      	oldTimestamp = oldTimestamp.replace(/-/g, "");
-			      	// returns 20160818
-			      	oldTimestamp = parseInt(oldTimestamp);
+			         
+			      	  if(data == 'this is the users first time'){
+                    console.log(data); //how to leave a function?
+                }
+                if(data == 'deny'){
+                    $('#yes').attr('disabled', true);
+                }
+                if(data == 'user can press the button'){
+                    console.log(data);
+                }
+                if(data == 'users streak has been reset'){
+                    console.log(data);
+                }
 
-			      	if(today - oldTimestamp < 1){
-			      		$('#yes').attr('disabled', true);
-			      		//so essentially when you convert days to numbers you get 20160818 and 20160819
-			      		//if one day has passed, subtracting current day from the previous should equal 1
-			      	}
-			      	if(today - oldTimestamp > 1){
-			      		$.post('http://localhost:3000/compare');
 			      	}
 			      
 			    }
 			  });
 
         $('#yes').on('click', function(){
-        	$.post('http://localhost:3000/streak');
+        	$.post('http://localhost:3000/update');
 
           this.attr('disabled', true);
         })
 
         $('#no').on('click', function(){
-        	$.post('http://localhost:3000/compare');
+        	$.post('http://localhost:3000/reset');
         })
 
      })
