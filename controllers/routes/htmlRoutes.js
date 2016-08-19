@@ -5,7 +5,7 @@ module.exports = function(app) {
     app.get('/', homeController.renderLanding);
     //Login _________________________________/
     app.get('/login', homeController.renderLogin);
-    app.post('/something/login',homeController.postLogin);
+    app.post('/login',homeController.postLogin);
 
     //Registration _________________________________/
     app.get('/registration', homeController.renderRegistration);
@@ -18,4 +18,9 @@ module.exports = function(app) {
     app.get('/compare', homeController.compareTime);
     app.post('/reset', homeController.resetStreak);
     app.post('/update', homeController.updateStreak);
+
+    app.get('/users/:username', homeController.isAuthenticated, homeController.renderProfile);
+    app.post('/users/:username', homeController.submitButton);
+    app.get('/profile', homeController.renderProfile);
 };
+

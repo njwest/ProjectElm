@@ -5,11 +5,15 @@ var moment = require('moment');
 module.exports = {
     //Landing Page _________________________________/
     renderLanding: function(req, res) {
-        // if(req.session){
-        //     res.redirect('/users/' + req.session.username);
-        // } else {
         res.render('landing');
-        // }
+    },
+    isAuthenticated: function(req, res, next) {
+        if (req.session.user) {
+            console.log('here')
+            return next();
+        } else {
+            res.redirect('/login');
+        }
 
     },
     //Login _________________________________/
@@ -25,18 +29,15 @@ module.exports = {
             }
         }).then(function(dbUser) {
             if (!dbUser) {
-                req.session.reset();
                 res.json({
                     message: "User not found"
                 });
             } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
-                req.user = dbUser
-                delete req.user.password
-                req.session.user = dbUser;
-                res.locals.user = dbUser
+                req.session.user = dbUser.dataValues;
+                delete req.session.user.password;
                 res.redirect('/users/' + dbUser.username);
+
             } else {
-                //if the password is invalid, we'll let the user know
                 res.json({
                     message: "Invalid Password"
                 });
@@ -46,16 +47,22 @@ module.exports = {
 
     //Profile _________________________________/
     renderProfile: function(req, res) {
-        console.log(req.user);
         res.render('profile');
 
     },
+
+
     submitButton: function(req, res) {
 
     },
     //Registration _________________________________/
     renderRegistration: function(req, res) {
-        res.render('registration');
+        db.Habits.findAll({}).then(function(results) {
+            res.render('registration', {
+                habits: results
+            });
+        });
+        // res.render('registration');
     },
     postUser: function(req, res) {
         'user strict';
@@ -140,12 +147,3 @@ module.exports = {
     }
 
 };
-
-//Login _________________________________/
-
-
-//Profile _________________________________/
-
-//Registration
-
-//Account routes
