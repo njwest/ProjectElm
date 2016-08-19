@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
 
                 // associations can be defined here
                 User.belongsToMany(models.Habits, {
-                    through: 'Userhabits'
+                    through: 'userhabits'
                 });
             }
         }
