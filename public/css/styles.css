@@ -1,8 +1,5 @@
 .home{
   background-color: #000;
-  background-image: url("../img/escalator.jpg");
-  background-size: 100%;
-  background-repeat: no-repeat;
 }
 
 .escalate{
@@ -17,8 +14,13 @@
 -ms-animation: color_change 1s infinite alternate;
 -o-animation: color_change 1s infinite alternate;
 animation: color_change 1s infinite alternate;
-
 }
+
+.baseTitle{
+  text-align: center;
+  margin-top: 100px;
+}
+
 button.register{
 width: 100%;
 margin-bottom: 10px;
@@ -66,15 +68,24 @@ margin-top: 0px;
 }
 
 @keyframes example {
-  0%   {color: black;}
+  0%   {color: white;}
   25%  {color: green;}
-  50%  {color: purple;}
-  75%  {color: blue;}
-  100% {color: black;}
+  50%  {color: teal;}
+  75%  {color: aqua;}
+  100% {color: white;}
 }
 
 .titleAnimate {
     animation-name: example;
-    animation-duration: 4s;
+    animation-duration: 10s;
     animation-iteration-count: infinite;
+}
+
+a.homeButton{
+  background-color: black;
+  color: white;
+  border: 2px solid;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
 }
