@@ -5,14 +5,13 @@ module.exports = function(app) {
     app.get('/', homeController.renderLanding);
     //Login _________________________________/
     app.get('/login', homeController.renderLogin);
-    app.post('/something/login',homeController.postLogin);
+    app.post('/login',homeController.postLogin);
 
     //Registration _________________________________/
     app.get('/registration', homeController.renderRegistration);
     app.post('/new_user/profile', homeController.postUser);
 
     //Profile _________________________________/
-    app.get('/users/:username', homeController.renderProfile);
-    app.post('/users/:username', homeController.submitButton);
-    app.get('/profile', homeController.renderProfile);
+    app.get('/users/:username', homeController.isAuthenticated, homeController.renderProfile);
+    app.post('/users/:username', homeController.submitButton)
 };

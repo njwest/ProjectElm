@@ -11,11 +11,23 @@ module.exports = {
         // }
 
     },
+    isAuthenticated: function(req, res, next){
+        console.log('before authenticate ' +  req.session.user)
+        if(req.session.user){
+            console.log('here')
+            return next();
+        } else {
+            console.log('or heregjgjgjgjhkkhkfhdfghjhfdfghjfdfghgfghjg')
+            res.redirect('/login');
+        }
+
+    },
     //Login _________________________________/
     renderLogin: function(req, res) {
         res.render('login');
     },
     postLogin: function(req, res, next) {
+        console.log(req.body);
         var email = req.body.email;  
         var password = req.body.password;
         var dbUser = db.User.findOne({
@@ -24,16 +36,16 @@ module.exports = {
             }
         }).then(function(dbUser) {
             if (!dbUser) {
-                req.session.reset();
+                // req.session.destroy();
                 res.json({
                     message: "User not found"
                 });
             } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
-                req.user = dbUser
-                delete req.user.password
-                req.session.user = dbUser;
-                res.locals.user = dbUser
+                req.session.user = dbUser.dataValues;
+                console.log('sessuion here', req.session.user);
+                delete req.session.user.password;
                 res.redirect('/users/' + dbUser.username);
+
             } else {
                 //if the password is invalid, we'll let the user know
                 res.json({
@@ -45,7 +57,8 @@ module.exports = {
 
     //Profile _________________________________/
     renderProfile: function(req, res) {
-        console.log(req.user);
+        console.log('after redirect ' + req.session.user);
+        console.log(JSON.stringify(req.session));
         res.render('profile');
 
     },
@@ -78,7 +91,6 @@ module.exports = {
         res.render('profile');
 
     },
-
 
 };
 
