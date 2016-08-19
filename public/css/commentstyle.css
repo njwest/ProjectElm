@@ -1,12 +1,3 @@
-html, body {
-	font-family: 'Montserrat', sans-serif;
-}
-
-
-.main {
-	margin-top: 10px;
-}
-
 form input {
 	background: #f0f0f0;
 
@@ -20,6 +11,14 @@ form input {
 	transition: background 2s, border-left 2s;
 }
 
+
+li {
+	padding-left: 20px;
+	border-left: 2px solid #000;
+	font-size: 14px;
+	margin: 0 0 36px;
+}
+
 form input:focus {
 	background: #fff;
 	border-left: 2px solid #000;
@@ -27,20 +26,7 @@ form input:focus {
 	outline: none;
 }
 
-button.btn {
-	background: lightblue;
-	border: 2px black;
 
-	color: black;
-	cursor: pointer;
-
-	font-size: 14px;
-
-	padding: 14px 18px;
-	margin-top: 6px;
-
-	transition: background 2s, color 2s;
-}
 
 button.btn.hover {
 	background: #00f28f;
@@ -53,13 +39,6 @@ button.btn.hover {
 	padding-left: 0px;
 	overflow: scroll;
 	height: 300px;
-}
-
-li {
-	padding-left: 20px;
-	border-left: 2px solid #000;
-	font-size: 14px;
-	margin: 0 0 36px;
 }
 
 #borderbox {
