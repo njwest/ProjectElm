@@ -7,8 +7,8 @@ var LocalStrategy   = require('passport-local');
 var logger          = require('morgan');
 var passport        = require('passport');
 var session         = require('express-session');
+var moment          = require('moment');
 var FileStore       = require('session-file-store')(session);
-
 var app             = express();
 require('dotenv').config({silent: true});
 

@@ -79,9 +79,13 @@
             <br/>
             <br/>
             <button class="btn green" id="yes">Yes!</button>
+              <br/>
+              <br/>
+            <button class="btn red darken-3 resetButton" id="no">No...</button>
             <br/>
             <br/>
             <button class="btn red darken-3 resetButton">No...</button>
+
 
             <h5>Goal: 10 Days {{habit}} Free</h5>
 
@@ -110,6 +114,46 @@
 
     </div>
 
+<<<<<<< HEAD
+     $(document).ready(function(){
+       
+        $.ajax({
+			    type: "GET",
+			    url: 'http://localhost:3000/compare',
+			    dataType: "json",
+			    async: true,
+			    success: function(data) {
+			         
+			      	  if(data == 'this is the users first time'){
+                    console.log(data); //how to leave a function?
+                }
+                if(data == 'deny'){
+                    $('#yes').attr('disabled', true);
+                }
+                if(data == 'user can press the button'){
+                    console.log(data);
+                }
+                if(data == 'users streak has been reset'){
+                    console.log(data);
+                }
+
+			      	}
+			      
+			    }
+			  });
+
+        $('#yes').on('click', function(){
+        	$.post('http://localhost:3000/update');
+
+          this.attr('disabled', true);
+        })
+
+        $('#no').on('click', function(){
+        	$.post('http://localhost:3000/reset');
+        })
+
+     })
+=======
     <script type="text/javascript">
         var value = {
             {
@@ -124,6 +168,7 @@
         }));
 
         if (value == 100) {
+>>>>>>> 561b5efd5b95c4cd19bafc6ee9c85dc059541954
 
             Materialize.toast($toastContent, 5000);
         }
