@@ -79,17 +79,16 @@ module.exports = {
         var salt = bcrypt.genSaltSync(10);
         var user = req.body;
         var hash = bcrypt.hashSync(user.password, salt);
-
         db.User.create({
                 email: user.email,
                 username: user.username,
                 password: hash,
                 habit: user.habit,
-            }).then(
-                db.userhabits.create({
+                include: [{
+                    model: db.userhabits,
 
-                })
-            )
+                }]
+            })
             .catch(function(err) {
                 res.json({
                     message: err.message
