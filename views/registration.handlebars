@@ -24,12 +24,8 @@
                             <label for="sel1">Habit you want to break:</label>
                             <select class="form-control" id="sel1">
                                 {{#each habits}}
-                                    <option>{{this.habit}}</option>
+                                    <option name="habit" value="{{this.habit}}">{{this.habit}}</option>
                                 {{/each}}
-                                <!-- <option>Smoking</option>
-                                <option>Procrastinating</option>
-                                <option>Nail-biting</option>
-                                <option>Drinking</option> -->
                             </select>
                         </div>
 
