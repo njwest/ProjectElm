@@ -15,7 +15,10 @@ module.exports = function(sequelize, DataTypes) {
             associate: function(models) {
                 // associations can be defined here
                 Habits.belongsToMany(models.User, {
-                    through: 'userhabits'
+                    as: 'Users',
+                    through: 'userhabits',
+                    foreignKey: 'HabitId'
+
                 });
             }
         }

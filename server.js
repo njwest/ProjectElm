@@ -53,6 +53,16 @@ db.sequelize.sync({force:false}).then(function() {
     // return Habits.create({
     //     habit: 'Smoking'
     // })
+    // return models.Habits.bulkCreate(
+    //   [
+    //     {habit: "Smoking"},
+    //     {habit: "Nail-biting"},
+    //     {habit: "Drinking"},
+    //     {habit: "Being late"},
+    //     {habit: "Fapping"},
+    //     {habit: "Other"}
+    //   ]
+    // )
     app.listen(PORT, function(err) {
         if (err) {
             console.error(err);
