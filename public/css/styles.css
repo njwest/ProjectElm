@@ -161,11 +161,18 @@ margin-bottom: 10px
   .side-nav .userView {
     padding: 16px 16px 0;
   }
+  .chatPanel{
+    display: block;
+  }
 }
 
 
 @media only screen and (min-width: 993px){
-  .dashboard{
-  position: relative;
-  padding: 50px 150px 0px 0px;
+    .dashboard{
+    position: relative;
+    padding: 50px 150px 0px 0px;
+  }
+  .chatPanel{
+    display: none;
+  }
 }
