@@ -6980,7 +6980,7 @@ input[type=range]:focus::-ms-fill-upper {
   right: 0;
   left: auto;
 }
-
+/* nick */
 @media only screen and (max-width: 992px) {
   .side-nav.fixed {
     -webkit-transform: translateX(-105%);

@@ -50,6 +50,10 @@ module.exports = {
 
     },
 
+    renderDashboard: function(req, res){
+      res.render('dashboard');
+    },
+
 
     submitButton: function(req, res) {
 

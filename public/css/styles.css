@@ -2,12 +2,17 @@
   background-color: #000;
 }
 
+.dash{
+  background-image: url('../img/gplay.png');
+}
+
 .escalate{
   background-color: #000;
   background-image: url("../img/escalator.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
 }
+
 .title{
   -webkit-animation: color_change 1s infinite alternate;
 -moz-animation: color_change 1s infinite alternate;
@@ -33,14 +38,6 @@ h1, h2, h3, h4, h5{
 .homeHead{
   text-align: center;
   margin: 10% 0px 25% 0px;
-}
-
-.sage{
-  background-color: #9caf84;
-}
-
-.otherBlue{
-  background-color: #96CDCD;
 }
 
 a.white{
@@ -88,4 +85,87 @@ a.homeButton{
   border-radius: 20px;
   text-decoration: none;
   font-weight: 600;
+}
+
+.welcome{
+  text-align:center;
+}
+
+.chatContainer{
+  background-color: #89bdd3;
+  margin-left: 10px;
+}
+
+.chat{
+  margin: 50px 10px 50px 10px;
+  background-color: #fff;
+}
+
+.top-nav{
+    background-color: #89bdd3;
+    padding: 10px 0px 5px 0px;
+    height: auto;
+}
+
+.buttonDiv{
+float: right;
+margin-right: 10px;
+margin-bottom: 10px
+}
+
+.card-panel{
+  background-color: #e3e3e3;
+}
+
+.progress{
+  background-color: #c9c9c9;
+  height: 30px;
+}
+
+.lightGray{
+  background-color: #e3e3e3;
+}
+
+.darkGray{
+  background-color:#c9c9c9;
+}
+
+.lightBlue{
+  background-color:#9ad3de;
+}
+
+.sage{
+  background-color: #9caf84;
+}
+
+.otherBlue{
+  background-color: #96CDCD;
+}
+
+.royalBlue{
+  background-color: #4169E1;
+}
+@media only screen and (max-width: 992px) {
+  .side-nav.fixed {
+    -webkit-transform: translateX(105%)!important;
+            transform: translateX(105%)!important;
+  }
+  .side-nav.fixed.right-aligned {
+    -webkit-transform: translateX(105%)!important;
+            transform: translateX(105%)!important;
+            color: #d21034;
+  }
+  .side-nav a {
+    padding: 0 16px;
+  }
+  .side-nav .userView {
+    padding: 16px 16px 0;
+  }
+}
+
+
+@media only screen and (min-width: 993px){
+  .dashboard{
+  position: relative;
+  padding: 50px 150px 0px 0px;
 }

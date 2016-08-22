@@ -15,4 +15,5 @@ module.exports = function(app) {
     app.get('/users/:username', homeController.isAuthenticated, homeController.renderProfile);
     app.post('/users/:username', homeController.submitButton);
     app.get('/profile', homeController.renderProfile);
+    app.get('/dashboard', homeController.renderDashboard);
 };
