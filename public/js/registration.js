@@ -6,7 +6,7 @@ $('#check_password').on('keyup', function () {
     };
 });
 
-// 
+//
 // $('#registration').click(function(){
 //     $('#selectHabit').toggleClass('hidden');
 // })
