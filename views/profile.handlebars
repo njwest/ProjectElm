@@ -1,180 +1,131 @@
-
 <style>
-
-.resetButton{
-  margin-bottom: 10px;
-}
-
+    .resetButton {
+        margin-bottom: 10px;
+    }
 </style>
 
 <body style="background-color: ; text-align:center;">
 
-  <div class="container" style="margin-top: 3em;">
+    <div class="container" style="margin-top: 3em;">
 
-    <div class="row">
-
-
-        <h1 style="text-align: center; font-family:'Lato', sans-serif;">Welcome back {{username}}!</h1>
-
-        <div class="card-panel col s12">
-
-     
-
-
-
-
-
-
-<div class="container">
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><b><h1>Chat with Users</h1></b></button>
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Main Chat</h4>
-        </div>
-        <div class="modal-body">
-
-
-
-
-
-
-
-<div id='borderbox'>
-<header class="header">
-      <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-md-12">
-            <div id='chathead'>
+
+
+            <h1 style="text-align: center; font-family:'Lato', sans-serif;">Welcome back {{user.username}}!</h1>
+
+            <div class="card-panel col s12">
+                <div class="container">
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><b><h1>Chat with Users</h1></b></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Main Chat</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div id='borderbox'>
+                                        <header class="header">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-12">
+                                                        <div id='chathead'>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </header>
+                                        <div class="main">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <form class="form">
+                                                        <div class="col-xs-8 col-md-10">
+                                                            <ul class="comments" id="comments">
+                                                                <li></li>
+                                                                <li></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class='col-xs-4 col-md-6'>
+                                                            <div id='sharethoughts'>
+                                                                <input id="comment" type="text" placeholder="share your thoughts">
+                                                                <button type="submit" class="btn-primary">post</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-</header>
-
-    <div class="main">
-      <div class="container">
-        <div class="row">
-          <form class="form">
-            <div class="col-xs-8 col-md-10">
-            <ul class="comments" id="comments">
-              <li></li>
-              <li></li>
-            </ul>
-            </div>
-            <div class='col-xs-4 col-md-6'>
-              <div id='sharethoughts'>
-                <input id="comment" type="text" 
-                placeholder="share your thoughts">
-                <button type="submit" class="btn-primary">post</button>
-              </div>
-            </div>
-          </form>
         </div>
 
-        
-
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-
-
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-
-        </div>
-
-        </div>
-
-          <div class="card-panel col s12 m8">
+        <div class="card-panel col s12 m8">
 
             <h5 style="font-weight:bold;">Have you gone 24 hours without fapping{{habit}}?</h5>
-              <br/>
-              <br/>
+            <br/>
+            <br/>
             <button class="btn green" id="yes">Yes!</button>
-              <br/>
-              <br/>
+            <br/>
+            <br/>
             <button class="btn red darken-3 resetButton">No...</button>
 
             <h5>Goal: 10 Days {{habit}} Free</h5>
 
             <div class="progress">
-              <div class="progress-bar progress-bar-success" id="goal" role="progressbar" aria-valuenow="40"
-              aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                40% Complete (4 days)
-              </div>
+                <div class="progress-bar progress-bar-success" id="goal" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                    40% Complete (4 days)
+                </div>
             </div>
 
-          </div>
+        </div>
 
 
-          <div class="card-panel col s12 m4 offset-1">
+        <div class="card-panel col s12 m4 offset-1">
             <h5>Current Streak</h5>
             <p>{{streak}} 1 days</p>
             <h5>Longest Streak </h5>
             <p>{{longestStreak}} 1 days</p>
-          </div>
+        </div>
 
-          <div class="card-panel col s12 m4 offset-1">
+        <div class="card-panel col s12 m4 offset-1">
             <p>[Quitting Content]</p>
-          </div>
+        </div>
 
 
     </div>
 
-  </div>
+    </div>
 
-  <script type="text/javascript">
-
-    var value = {{streak}};
+    <script type="text/javascript">
+        var value = {
+            {
+                streak
+            }
+        };
         var $toastContent = $('<span>I am toast content</span>');
-      $('#yes').on('click',(function(){
-        value += 10;
-        $('.progress-bar').css('width', value+'%').attr('aria-valuenow', value);
+        $('#yes').on('click', (function() {
+            value += 10;
+            $('.progress-bar').css('width', value + '%').attr('aria-valuenow', value);
 
-      }));
+        }));
 
-      if (value == 100){
+        if (value == 100) {
 
-        Materialize.toast($toastContent, 5000);
-      }
-
-  </script>
+            Materialize.toast($toastContent, 5000);
+        }
+    </script>
 
 </body>
