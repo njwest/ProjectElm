@@ -56,6 +56,7 @@ var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync().then(function() {
+  force: true;
     // return Habits.create({
     //     habit: 'Smoking'
     // })
