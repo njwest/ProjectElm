@@ -102,13 +102,26 @@ module.exports = {
             });
         res.render('profile');
 
-    }
-    // compareTime: function(req, res){
-    //     var today = new Date()
-    //     today = today.toISOstring().substr(0,10);
+    },
+    compareTime: function(req, res){
+        var today = new Date()
+        today = today.toISOString()
     // //     // returns 2016-08-19T16:55:45.635Z
-    // //     today = today.substr(0,10);
+        today = today.substr(0,10);
     // //     //returns 2016-08-19
+
+        db.Userhabits.findOne({
+            where:{UserId: req.session.user.id}
+        }).then(function(user){
+            if(user){
+                var updatedStreak = user.streak + 1;
+                return user.update({
+                    streak: updatedStreak
+                })
+            }
+        }).then(function(user){
+            res.json(user);
+        })
     //     sequelize.query('SELECT * FROM Userhabits WHERE id="UserId"', function(err, result){
     //         if (err) throw err;
     //         var timestamp = result.updatedAt;
@@ -143,7 +156,7 @@ module.exports = {
     //         }
     //
     //     })
-    // },
+    },
     //
     // updateStreak : function(req, res){
     //     sequelize.query('SELECT * FROM Userhabits WHERE id="IndividualUserID"', function(err, result){
