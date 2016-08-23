@@ -18,7 +18,6 @@ module.exports = function(sequelize, DataTypes) {
                     as: 'Users',
                     through: 'Userhabits',
                     foreignKey: 'HabitId'
-
                 });
             }
         }

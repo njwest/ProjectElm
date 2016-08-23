@@ -21,6 +21,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        // habits: {
+        //         type: DataTypes.STRING,
+        //         allowNull: false
+        // },
         HabitId: {
             type: DataTypes.INTEGER,
             // allowNull: false
