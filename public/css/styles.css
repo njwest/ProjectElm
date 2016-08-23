@@ -109,14 +109,23 @@ a.homeButton{
     height: auto;
 }
 
+.btn{
+  font-weight: 600;
+}
+
 .buttonDiv{
 float: right;
 margin-right: 10px;
 margin-bottom: 10px
 }
 
+.logOut{
+  border: 2px dotted;
+  border-radius: 15px;
+}
+
 .card-panel{
-  background-color: #c9c9c9;
+  background-color: #e1e1e1;
 }
 
 .progress{
@@ -131,9 +140,17 @@ margin-bottom: 10px
   .darkGray{
     background-color:#c9c9c9;
   }
+  li.darkGray:hover{
+    background-color: #e3e3e3;
+    color: #89bdd3;
+  }
 
   .lightBlue{
     background-color:#9ad3de;
+  }
+
+  .darkBlue{
+    background-color: #89bdd3;
   }
 
   .sage{
