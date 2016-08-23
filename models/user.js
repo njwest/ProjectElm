@@ -21,8 +21,8 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        habit: {
-            type: DataTypes.STRING,
+        HabitId: {
+            type: DataTypes.INTEGER,
             // allowNull: false
         },
         streak: {
@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
                 // associations can be defined here
                 User.belongsToMany(models.Habits, {
                     as: 'Habits',
-                    through: 'userhabits',
+                    through: 'Userhabits',
                     foreignKey: 'UserId'
 
                 });

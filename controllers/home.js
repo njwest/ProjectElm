@@ -84,7 +84,7 @@ module.exports = {
                 email: user.email,
                 username: user.username,
                 password: hash,
-                habit: user.habit,
+                HabitId: user.habit,
                 include: [{
                     model: db.userhabits,
 
@@ -97,9 +97,9 @@ module.exports = {
             });
         res.render('profile');
 
-    }
-    // compareTime: function(req, res){
-    //     var today = new Date();
+    },
+    compareTime: function(req, res){
+        var today = new Date();
     //     today = today.toISOstring();
     //     // returns 2016-08-19T16:55:45.635Z
     //     today = today.substr(0,10);
@@ -139,7 +139,7 @@ module.exports = {
     //         }
     //
     //     })
-    // },
+    },
     //
     // updateStreak : function(req, res){
     //     sequelize.query('SELECT * FROM Userhabits WHERE id="IndividualUserID"', function(err, result){
