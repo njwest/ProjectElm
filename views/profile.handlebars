@@ -68,7 +68,6 @@
 
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -79,13 +78,9 @@
             <br/>
             <br/>
             <button class="btn green" id="yes">Yes!</button>
-              <br/>
-              <br/>
-            <button class="btn red darken-3 resetButton" id="no">No...</button>
             <br/>
             <br/>
             <button class="btn red darken-3 resetButton">No...</button>
-
 
             <h5>Goal: 10 Days {{habit}} Free</h5>
 
@@ -114,7 +109,7 @@
 
     </div>
 
-<<<<<<< HEAD
+<script>
      $(document).ready(function(){
 
         $.ajax({
@@ -153,7 +148,7 @@
         })
 
      })
-=======
+</script>
     <script type="text/javascript">
         var value = {
             {
@@ -166,7 +161,6 @@
             $('.progress-bar').css('width', value + '%').attr('aria-valuenow', value);
         }));
         if (value == 100) {
->>>>>>> 561b5efd5b95c4cd19bafc6ee9c85dc059541954
             Materialize.toast($toastContent, 5000);
         }
     </script>

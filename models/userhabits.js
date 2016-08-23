@@ -1,7 +1,10 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Userhabits = sequelize.define('Userhabits', {
-    streak: DataTypes.INTEGER
+  var userhabits = sequelize.define('Userhabits', {
+    streak: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    }
   }, {
     classMethods: {
       associate: function(models) {

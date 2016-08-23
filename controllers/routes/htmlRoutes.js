@@ -10,6 +10,10 @@ module.exports = function(app) {
     //Registration _________________________________/
     app.get('/registration', homeController.renderRegistration);
     app.post('/new_user/profile', homeController.postUser);
+    //button Test____________________________________/
+    app.get('/compare', homeController.compareTime);
+    // app.post('/reset', homeController.resetStreak);
+    // app.post('/update', homeController.updateStreak);
 
     //Profile _________________________________/
     app.get('/users/:username', homeController.isAuthenticated, homeController.renderProfile);
