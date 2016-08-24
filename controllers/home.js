@@ -19,6 +19,7 @@ module.exports = {
     renderLogin: function(req, res) {
         res.render('login');
     },
+
     postLogin: function(req, res, next) {
         var email = req.body.email;  
         var password = req.body.password;
@@ -46,7 +47,14 @@ module.exports = {
 
     //Profile _________________________________/
     renderProfile: function(req, res) {
-        res.render('profile');
+      if(req.params.username == req.session.user.username){
+            res.render('profile', {
+                user: req.session.user
+            });
+        } else {
+            res.redirect('/login');
+        }
+
 
     },
 
@@ -97,12 +105,9 @@ module.exports = {
 
     },
     compareTime: function(req, res){
-        var today = new Date()
-        today = today.toISOString()
+        var today = new Date().toISOString().substr(0,10);
     // //     // returns 2016-08-19T16:55:45.635Z
-        today = today.substr(0,10);
     // //     //returns 2016-08-19
-
         db.Userhabits.findOne({
             where:{UserId: req.session.user.id}
         }).then(function(user){
