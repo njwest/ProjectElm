@@ -161,6 +161,11 @@ module.exports = {
     //
     //     })
     },
+
+    logout: function(req, res){
+        delete req.session.user
+        res.redirect('/');
+    }
     //
     // updateStreak : function(req, res){
     //     sequelize.query('SELECT * FROM Userhabits WHERE id="IndividualUserID"', function(err, result){
