@@ -8,7 +8,6 @@ module.exports = {
     },
     isAuthenticated: function(req, res, next) {
         if (req.session.user) {
-            console.log('here')
             return next();
         } else {
             res.redirect('/login');
@@ -36,7 +35,6 @@ module.exports = {
                 req.session.user = dbUser.dataValues;
                 delete req.session.user.password;
                 res.redirect('/users/' + dbUser.username);
-
             } else {
                 res.json({
                     message: "Invalid Password"
@@ -91,17 +89,20 @@ module.exports = {
 
                 }]
             }).then(function(dbuser){
+                req.session.user = dbuser.dataValues;
                 return db.Userhabits.create({
                     UserId: dbuser.id,
                     HabitId: dbuser.HabitId
                 })
+            }).then(function(dbuser){
+                res.redirect('/users/' + req.session.user.username);
             })
             .catch(function(err) {
                 res.json({
                     message: err.message
                 });
             });
-        res.render('profile');
+
 
     },
     compareTime: function(req, res){
