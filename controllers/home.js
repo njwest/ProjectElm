@@ -1,5 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
+// var moment = require('moment');
+
 
 module.exports = {
     //Landing Page _________________________________/
@@ -34,7 +36,8 @@ module.exports = {
             } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
                 req.session.user = dbUser.dataValues;
                 delete req.session.user.password;
-                res.redirect('/users/' + dbUser.username);
+                res.redirect('/users/' + dbUser.dataValues.username);
+
             } else {
                 res.json({
                     message: "Invalid Password"
@@ -45,8 +48,8 @@ module.exports = {
 
     //Profile _________________________________/
     renderProfile: function(req, res) {
-      if(req.params.username == req.session.user.username){
-            res.render('profile', {
+        if(req.params.username == req.session.user.username){
+            res.render('dashboard', {
                 user: req.session.user
             });
         } else {
@@ -56,12 +59,16 @@ module.exports = {
 
     },
 
-    renderDashboard: function(req, res){
-      res.render('dashboard');
-    },
-
 
     submitButton: function(req, res) {
+        //current time
+
+        // db.userhabits.put({
+        //     streak: time,
+        //     userId: req.session.user.id,
+        //     habitId: req.session.user.habitId,
+        // });
+
 
     },
     //Registration _________________________________/
@@ -71,14 +78,12 @@ module.exports = {
                 habits: results
             });
         });
-        // res.render('registration');
     },
     postUser: function(req, res) {
         'user strict';
         var salt = bcrypt.genSaltSync(10);
         var user = req.body;
         var hash = bcrypt.hashSync(user.password, salt);
-
         db.User.create({
                 email: user.email,
                 username: user.username,
@@ -156,6 +161,11 @@ module.exports = {
     //
     //     })
     },
+
+    logout: function(req, res){
+        delete req.session.user
+        res.redirect('/');
+    }
     //
     // updateStreak : function(req, res){
     //     sequelize.query('SELECT * FROM Userhabits WHERE id="IndividualUserID"', function(err, result){
