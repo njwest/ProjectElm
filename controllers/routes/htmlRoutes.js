@@ -9,7 +9,7 @@ module.exports = function(app) {
 
     //Registration _________________________________/
     app.get('/registration', homeController.renderRegistration);
-    app.post('/new_user/profile', homeController.postUser);
+    app.post('/register', homeController.postUser);
 
     //button Test____________________________________/
     app.get('/compare', homeController.compareTime);
