@@ -106,9 +106,9 @@ module.exports = {
     compareTime: function(req, res){
         var today = new Date()
         today = today.toISOString()
-    // //     // returns 2016-08-19T16:55:45.635Z
+        // returns 2016-08-19T16:55:45.635Z
         today = today.substr(0,10);
-    // //     //returns 2016-08-19
+        //returns 2016-08-19
 
         db.Userhabits.findOne({
             where:{UserId: req.session.user.id}

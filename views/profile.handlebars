@@ -110,22 +110,23 @@
     </div>
 
     <script type="text/javascript">
-        var value = {
-            {
-                streak
-            }
-        };
-        var $toastContent = $('<span>I am toast content</span>');
-        $('#yes').on('click', (function() {
-            value += 10;
-            $('.progress-bar').css('width', value + '%').attr('aria-valuenow', value);
+        
+       
 
-        }));
+        $('#yes').on('click', function(){
 
-        if (value == 100) {
-
-            Materialize.toast($toastContent, 5000);
-        }
+            $.ajax({
+                type: "GET",
+                url: 'http://localhost:3000/compare',
+                dataType: "json",
+                async: true,
+                success: function(data) {
+ -                
+                    
+                    console.log(data);
+                }
+              });
+        })
     </script>
 
 </body>
