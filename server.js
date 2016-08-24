@@ -8,6 +8,7 @@ var logger          = require('morgan');
 var passport        = require('passport');
 var session         = require('express-session');
 var FileStore       = require('session-file-store')(session);
+
 var app             = express();
 require('dotenv').config({silent: true});
 
@@ -25,6 +26,11 @@ app.use(session({
     maxAge: 60000 * 60 * 24 * 14
   }
 }));
+
+// app.use(function printSession(req, res, next) {
+//   console.log('req.session', req.session);
+//   return next();
+// });
 
 app.use(bodyParser.json());
 
@@ -49,20 +55,11 @@ global.db = require('./models');
 var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync({force:false}).then(function() {
+db.sequelize.sync().then(function() {
+  force: true;
     // return Habits.create({
     //     habit: 'Smoking'
     // })
-    // return models.Habits.bulkCreate(
-    //   [
-    //     {habit: "Smoking"},
-    //     {habit: "Nail-biting"},
-    //     {habit: "Drinking"},
-    //     {habit: "Being late"},
-    //     {habit: "Fapping"},
-    //     {habit: "Other"}
-    //   ]
-    // )
     app.listen(PORT, function(err) {
         if (err) {
             console.error(err);
