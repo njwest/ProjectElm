@@ -119,19 +119,10 @@
 			    async: true,
 			    success: function(data) {
 
-			      	  if(data == 'this is the users first time'){
+			    if(data.streak == 0){
                     console.log(data); //how to leave a function?
-                }
-                if(data == 'deny'){
-                    $('#yes').attr('disabled', true);
-                }
-                if(data == 'user can press the button'){
-                    console.log(data);
-                }
-                if(data == 'users streak has been reset'){
-                    console.log(data);
-                }
-
+                
+                    
 			      	}
 
 			    }
