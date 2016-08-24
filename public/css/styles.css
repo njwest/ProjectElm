@@ -3,7 +3,6 @@
   background-image: url("../img/escalator.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
-  margin-top: -50px;
 }
 
 .escalate{
@@ -12,7 +11,14 @@
   background-size: 100%;
   background-repeat: no-repeat;
 }
+.title{
+  -webkit-animation: color_change 1s infinite alternate;
+-moz-animation: color_change 1s infinite alternate;
+-ms-animation: color_change 1s infinite alternate;
+-o-animation: color_change 1s infinite alternate;
+animation: color_change 1s infinite alternate;
 
+}
 button.register{
 width: 100%;
 margin-bottom: 10px;
@@ -24,7 +30,7 @@ h1, h2, h3, h4, h5{
 
 .homeHead{
   text-align: center;
-  margin: 25% 0px 25% 0px;
+  margin: 10% 0px 25% 0px;
 }
 
 .sage{
@@ -47,6 +53,28 @@ a.black{
   text-decoration: none;
 }
 
+div.black{
+  color: #fff;
+}
+
 .profile{
   text-align: center;
+}
+
+.modal{
+margin-top: 0px;
+}
+
+@keyframes example {
+  0%   {color: black;}
+  25%  {color: green;}
+  50%  {color: purple;}
+  75%  {color: blue;}
+  100% {color: black;}
+}
+
+.titleAnimate {
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }

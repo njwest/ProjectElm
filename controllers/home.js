@@ -10,7 +10,6 @@ module.exports = {
     },
     isAuthenticated: function(req, res, next) {
         if (req.session.user) {
-            console.log('here')
             return next();
         } else {
             res.redirect('/login');
@@ -21,6 +20,7 @@ module.exports = {
     renderLogin: function(req, res) {
         res.render('login');
     },
+
     postLogin: function(req, res, next) {
         var email = req.body.email;  
         var password = req.body.password;
@@ -36,7 +36,7 @@ module.exports = {
             } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
                 req.session.user = dbUser.dataValues;
                 // delete req.session.user.password;
-                res.redirect('/users/' + dbUser.username);
+                res.redirect('/users/' + dbUser.dataValues.username);
 
             } else {
                 res.json({
@@ -48,9 +48,14 @@ module.exports = {
 
     //Profile _________________________________/
     renderProfile: function(req, res) {
-        res.render('profile', {
-            user: req.session.user
-        });
+        if(req.params.username == req.session.user.username){
+            res.render('profile', {
+                user: req.session.user
+            });
+        } else {
+            res.redirect('/login');
+        }
+
 
     },
 
@@ -78,7 +83,6 @@ module.exports = {
         'user strict';
         var salt = bcrypt.genSaltSync(10);
         var user = req.body;
-        console.log('this is the req.body ', req.body);
         var hash = bcrypt.hashSync(user.password, salt);
         db.User.create({
                 email: user.email,
@@ -90,20 +94,24 @@ module.exports = {
 
                 }]
             }).then(function(dbuser){
+                req.session.user = dbuser.dataValues;
                 return db.Userhabits.create({
                     UserId: dbuser.id,
                     HabitId: dbuser.HabitId
                 })
+            }).then(function(dbuser){
+                res.redirect('/users/' + req.session.user.username);
             })
             .catch(function(err) {
                 res.json({
                     message: err.message
                 });
             });
-        res.render('profile');
+
 
     },
     compareTime: function(req, res){
+
         var today = new Date()
         today = today.toISOString()
         // returns 2016-08-19T16:55:45.635Z

@@ -5,20 +5,76 @@
 
     <div class="row">
 
-      <div class="card-panel s12 homeHead">
-        <h1>Impulsion.io</h1>
+      <div class="card-panel s12 homeHead ">
+        <h1 class="titleAnimate">Impulsion.io</h1>
         <h3>Break habits. Get support. Socialize.</h3>
 
-        <a class="waves-effect waves-green btn-large white modal-trigger" href="/registration">Get started!</a>
+        <a class="waves-effect waves-green btn-large black modal-trigger" href="#modal1">Get started!</a>
       <br/>
       <br/>
         <p>Already a member?</p>
-        <a class="waves-effect waves-green btn-large white" href="/login">Login</a>
+        <a class="waves-effect waves-green btn-large black" href="/login">Login</a>
 
       </div>
 
     </div>
 
   </div>
+
+  <!-- REGISTRATION MODAL -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+
+                    <h3 class="center">Register</h3>
+
+                      <form class="" id="registration" method="POST" action="/new_user/profile">
+
+                              <label>Username</label>
+
+                              <input type="text" name="username" placeholder="Username"></input>
+
+                              <label>Email</label>
+
+                              <input type="text" name="email" placeholder="john.smith@email.com"></input>
+
+                              <div class="form-group">
+                                  <label for="sel1">Habit you want to break:</label>
+                                  <select class="form-control" id="sel1">
+                                      <option>Smoking</option>
+                                      <option>Procrastinating</option>
+                                      <option>Nail-biting</option>
+                                      <option>Drinking</option>
+                                  </select>
+                              </div>
+
+                              <label>Password</label>
+
+                              <input type="password" id="password" name="password" placeholder="password@123">
+                              <label>Re-Enter Password</label>
+
+                              <input type="password" id="check_password" name="renter-password" placeholder="password@123"></input>
+
+                          <button class="waves-effect waves-purple btn-large black register" type="submit" id="submit">Submit</button>
+                      </form>
+
+              </div>
+
+            <div class="modal-footer">
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
+
+          <!-- LOGIN MODAL -->
+
+          <div id="modal2" class="modal">
+            <div class="modal-content">
+
+            </div>
+          </div>
+  <script>
+  $(document).ready(function() {
+    $('.modal-trigger').leanModal();
+  });
+  </script>
 
 </body>
