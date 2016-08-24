@@ -12,6 +12,11 @@ module.exports = function(app) {
     app.post('/new_user/profile', homeController.postUser);
 
     //Profile _________________________________/
+
+    // app.get('/compare', homeController.compareTime);
+    // app.post('/reset', homeController.resetStreak);
+    // app.post('/update', homeController.updateStreak);
+
     app.get('/users/:username', homeController.isAuthenticated, homeController.renderProfile);
     app.post('/users/:username', homeController.submitButton);
     app.get('/profile', homeController.renderProfile);
