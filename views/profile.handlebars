@@ -109,6 +109,46 @@
 
     </div>
 
+<script>
+     $(document).ready(function(){
+
+        $.ajax({
+			    type: "GET",
+			    url: 'http://localhost:3000/compare',
+			    dataType: "json",
+			    async: true,
+			    success: function(data) {
+
+			      	  if(data == 'this is the users first time'){
+                    console.log(data); //how to leave a function?
+                }
+                if(data == 'deny'){
+                    $('#yes').attr('disabled', true);
+                }
+                if(data == 'user can press the button'){
+                    console.log(data);
+                }
+                if(data == 'users streak has been reset'){
+                    console.log(data);
+                }
+
+			      	}
+
+			    }
+			  });
+
+        $('#yes').on('click', function(){
+        	$.post('http://localhost:3000/update');
+
+          this.attr('disabled', true);
+        })
+
+        $('#no').on('click', function(){
+        	$.post('http://localhost:3000/reset');
+        })
+
+     })
+</script>
     <script type="text/javascript">
         var value = {
             {
@@ -119,11 +159,8 @@
         $('#yes').on('click', (function() {
             value += 10;
             $('.progress-bar').css('width', value + '%').attr('aria-valuenow', value);
-
         }));
-
         if (value == 100) {
-
             Materialize.toast($toastContent, 5000);
         }
     </script>

@@ -12,7 +12,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       streak: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
       },
       habit: {
         type: Sequelize.STRING

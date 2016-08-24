@@ -27,7 +27,6 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.0",
     "method-override": "^2.3.6",
-    "moment": "^2.14.1",
     "morgan": "^1.7.0",
     "mysql": "^2.11.1",
     "semantic-ui": "^2.2.2",
