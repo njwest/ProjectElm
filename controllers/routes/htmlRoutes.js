@@ -13,8 +13,9 @@ module.exports = function(app) {
 
     //button Test____________________________________/
     app.get('/compare', homeController.compareTime);
-    // app.post('/reset', homeController.resetStreak);
-    // app.post('/update', homeController.updateStreak);
+    app.post('/reset', homeController.resetStreak);
+    app.post('/update', homeController.updateStreak);
+    app.get('/progress', homeController.progressBar);
 
     //Profile _________________________________/
     app.get('/users/:username', homeController.isAuthenticated, homeController.renderProfile);
@@ -23,4 +24,5 @@ module.exports = function(app) {
 
     //Logout ____________________________________/
     app.get('/logout', homeController.logout);
+    app.get('/dashboard', homeController.dashboard)
 };
