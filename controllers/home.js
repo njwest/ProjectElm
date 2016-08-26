@@ -6,7 +6,11 @@ var moment = require('moment');
 module.exports = {
     //Landing Page _________________________________/
     renderLanding: function(req, res) {
-        res.render('landing');
+        db.Habits.findAll({}).then(function(results) {
+            res.render('landing', {
+                habits: results
+            });
+        });
     },
     isAuthenticated: function(req, res, next) {
         if (req.session.user) {
@@ -61,14 +65,6 @@ module.exports = {
 
 
     submitButton: function(req, res) {
-        //current time
-
-        // db.userhabits.put({
-        //     streak: time,
-        //     userId: req.session.user.id,
-        //     habitId: req.session.user.habitId,
-        // });
-
 
     },
     //Registration _________________________________/
@@ -184,9 +180,35 @@ module.exports = {
                res.json(user.streak);
             }
         })
+    },
+
+    logout: function(req, res){
+        delete req.session.user
+        res.redirect('/');
+    },
+
+    dashboard: function(req, res){
+        res.render('dashboard');
     }
+    //
+    // updateStreak : function(req, res){
+    //     sequelize.query('SELECT * FROM Userhabits WHERE id="IndividualUserID"', function(err, result){
+    //         if (err) throw err;
+    //         var streak = result.streak;
+    //         var streak = streak++;
+    //
+    //         sequelize.query('UPDATE Userhabits SET Streak=""' + streak + 'WHERE id="IndividualUserID"', function(err, result){
+    //             if (err) throw err;
+    //         })
+    //     })
+    // },
+    //
+    // resetStreak: function(req, res){
+    //     sequelize.query('UPDATE Userhabits SET Streak="0" WHERE id="InidivdualUserID"', function(err, result){
+    //         if (err) throw err;
+    //
+    //     })
+    // }
 
+};
 
-
-
-}

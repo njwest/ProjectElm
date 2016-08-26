@@ -22,4 +22,7 @@ module.exports = function(app) {
     app.post('/users/:username', homeController.submitButton);
     app.get('/profile', homeController.renderProfile);
 
+    //Logout ____________________________________/
+    app.get('/logout', homeController.logout);
+    app.get('/dashboard', homeController.dashboard)
 };

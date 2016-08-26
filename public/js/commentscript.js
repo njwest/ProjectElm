@@ -2,17 +2,20 @@ var main = function() {
 	var dataRef = new Firebase("https://mainchathabits.firebaseio.com/");
 
 dataRef.on("child_added", function(snapshot){
+	var userNameList = snapshot.val().username;
+	$('#comments').append('<li>' + commentsList + ' ')
 	var commentsList = snapshot.val().comment;
-	$('#comments').append('<li>' + commentsList + '</li>')
-
+	$('#comments').append(' ' + commentsList + '</li>')
 
 });
 
 
 	$('form').submit(function(event) {
 		var comment = $('#comment').val();
+		var username = '{{user.username}}'
 		dataRef.push({
-			comment: comment
+			comment: comment,
+			username: username
 		});
 
 		// $('#comments').append('<li>' + comment + '</li>');
