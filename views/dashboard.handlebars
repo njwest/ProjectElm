@@ -80,15 +80,15 @@
 
       <div class="card-panel col s12 m12 welcome">
         <h3>Welcome {{user.username}}!</h3>
-        <h4>You have gone {{streak}} days without {{habit}}.</h4>
+        <h4 id="title">You have gone {{streak}} days without {{habit}}.</h4>
         <h4>Current goal: 10 days.</h4>
       </div>
 
       <div class="col s12 m12">
         <div class="progress">
-          <div class="progress-bar progress-bar-success" id="goal" role="progressbar" aria-valuenow="40"
-          aria-valuemin="0" aria-valuemax="100" style="width:40%">
-            <strong>4 Days Complete!</strong>
+          <div class="progress-bar progress-bar-success" id="goal" role="progressbar" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100" style="width:0%">
+            <strong id="text" style="font-size:12px;">Days Complete!</strong>
           </div>
         </div>
       </div>
@@ -129,8 +129,78 @@
   $(".button-collapse").sideNav();
   </script>
 
+  <script>
+      $(document).ready(function(){
 
+        function progress(){
+          $.ajax({
+          type: "GET",
+          url: 'http://localhost:3000/progress',
+          dataType: "json",
+          async: true,
+          success: function(data) {
 
+            console.log(data);
+            var progress = data * 10;
+            var string = "width:" + progress + "%";
+            data = data.toString();
+            $('#text').text(data + ' Day(s) Done!');
+            $('#title').text('You have gone ' + data + ' day(s) without...');
+            $('#goal').attr('style', string);
+        }
+      });
 
+        }
 
+        $.ajax({
+          type: "GET",
+          url: 'http://localhost:3000/compare',
+          dataType: "json",
+          async: true,
+          success: function(data) {
+
+            console.log(data);
+
+            if(data == 'deny'){
+              $('#yes').attr('disabled', true);
+              console.log('You cannot press the button! It has not been more than a day since the last press!');
+            }
+
+            if(data == 'update'){
+              $.post('http://localhost:3000/reset');
+              console.log('You can press the button but your streak has been reset');
+            }
+
+            if(data == 'approve'){
+              console.log('You can press the button!');
+            }
+        }
+      });
+
+        
+        $('#yes').on('click', function(){
+          $.post('/update').then(function(val){
+            progress();
+          });
+          //console.log(this);
+          $(this).attr('disabled', true);
+          //progress();
+        })
+
+        $('#no').on('click', function(){
+          $.post('/reset').then(function(val){
+            progress();
+          });
+
+          console.log('Your streak has been reset!');
+          $('#yes').attr('disabled', false);
+          //progress();
+        })
+
+        progress();
+        
+
+     })
+
+  </script>
 </body>
