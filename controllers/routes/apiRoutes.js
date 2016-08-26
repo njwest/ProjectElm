@@ -1,4 +1,4 @@
 var testApiController = require('../testApi');
 module.exports = function(app) {
-    app.get('/test', testApiController.testApi);
+    app.get('/api/user', testApiController.apiUsername);
 };

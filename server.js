@@ -1,16 +1,18 @@
 //App depencencies -----------------------------------------/
-var express         = require('express');
-var bodyParser      = require('body-parser');
-var exphbs          = require('express-handlebars');
-var methodOverride  = require('method-override');
-var LocalStrategy   = require('passport-local');
-var logger          = require('morgan');
-var passport        = require('passport');
-var session         = require('express-session');
-var FileStore       = require('session-file-store')(session);
+var express = require('express');
+var bodyParser = require('body-parser');
+var exphbs = require('express-handlebars');
+var methodOverride = require('method-override');
+var LocalStrategy = require('passport-local');
+var logger = require('morgan');
+var passport = require('passport');
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 
-var app             = express();
-require('dotenv').config({silent: true});
+var app = express();
+require('dotenv').config({
+    silent: true
+});
 
 //App middleware -------------------------------------------/
 app.use(logger('combined'));
@@ -21,10 +23,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: 'speakeasyconservatory',
-  cookie: {
-    maxAge: 60000 * 60 * 24 * 14
-  }
+    secret: 'speakeasyconservatory',
+    cookie: {
+        maxAge: 60000 * 60 * 24 * 14
+    }
 }));
 
 // app.use(function printSession(req, res, next) {
@@ -55,20 +57,9 @@ global.db = require('./models');
 var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync({  force: false}).then(function() {
 
-// return db.Habits.bulkCreate(
-//       [
-//         {habit: "Smoking"},
-//         {habit: "Nail-biting"},
-//         {habit: "Drinking"},
-//         {habit: "Being late"},
-//         {habit: "Fapping"},
-//         {habit: "Other"}
-//       ]
-//     )
-
-      app.listen(PORT, function(err) {
+db.sequelize.sync({force:false}).then(function() {
+    app.listen(PORT, function(err) {
         if (err) {
             console.error(err);
         } else {
