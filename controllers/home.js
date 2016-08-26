@@ -6,7 +6,11 @@ var session = require('express-session');
 module.exports = {
     //Landing Page _________________________________/
     renderLanding: function(req, res) {
-        res.render('landing');
+        db.Habits.findAll({}).then(function(results) {
+            res.render('landing', {
+                habits: results
+            });
+        });
     },
     isAuthenticated: function(req, res, next) {
         if (req.session.user) {
@@ -61,14 +65,6 @@ module.exports = {
 
 
     submitButton: function(req, res) {
-        //current time
-
-        // db.userhabits.put({
-        //     streak: time,
-        //     userId: req.session.user.id,
-        //     habitId: req.session.user.habitId,
-        // });
-
 
     },
     //Registration _________________________________/
