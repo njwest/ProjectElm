@@ -161,6 +161,10 @@ module.exports = {
     logout: function(req, res){
         delete req.session.user
         res.redirect('/');
+    },
+
+    dashboard: function(req, res){
+        res.render('dashboard');
     }
     //
     // updateStreak : function(req, res){

@@ -56,11 +56,19 @@ var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync().then(function() {
-  force: true;
-    // return Habits.create({
-    //     habit: 'Smoking'
-    // })
-    app.listen(PORT, function(err) {
+  force: false
+// return db.Habits.bulkCreate(
+//       [
+//         {habit: "Smoking"},
+//         {habit: "Nail-biting"},
+//         {habit: "Drinking"},
+//         {habit: "Being late"},
+//         {habit: "Fapping"},
+//         {habit: "Other"}
+//       ]
+//     )
+
+      app.listen(PORT, function(err) {
         if (err) {
             console.error(err);
         } else {

@@ -23,4 +23,5 @@ module.exports = function(app) {
 
     //Logout ____________________________________/
     app.get('/logout', homeController.logout);
+    app.get('/dashboard', homeController.dashboard)
 };
