@@ -1,123 +1,128 @@
-
 <body class="home">
 
-  <div class="parallax">
-    <div id="group2" class="parallax_group">
-      <div class="title">Base Layer</div>
-    </div>
-    <div class="parallax__layer parallax__layer--back">
-      <div class="title">
-          Background Layer
-      </div>
-    </div>
-  </div>
 
-  <div class="parallax">
-
-      <div class="baseTitle parallax_group" id="group2">
-        <h1 class="titleAnimate">Impulsion.io</h1>
-        <h3 style="color:white;">Break habits. Get support. Socialize.</h3>
-      </div>
-      <div class="row">
-
-      <div class="col m4 offset-m2 s12">
-          <a class="waves-effect waves-green btn-large modal-trigger homeButton" href="#modal2">Log in</a>
-      </div>
-
-      <div class="col m4 offset-m1 s12">
-          <a class="waves-effect waves-green btn-large modal-trigger homeButton" href="#modal1">Register</a>
-      </div>
-
-      <div class="card-panel col s12">
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- REGISTRATION MODAL -->
-          <div id="modal1" class="modal">
-            <div class="modal-content">
-
-                    <h3 class="center">Register</h3>
-
-                      <form class="" id="registration" method="POST" action="/new_user/profile">
-
-                              <label>Username</label>
-
-                              <input type="text" name="username" placeholder="Username"></input>
-
-                              <label>Email</label>
-
-                              <input type="text" name="email" placeholder="john.smith@email.com"></input>
-
-                              <div class="form-group">
-                                  <label for="sel1">Habit you want to break:</label>
-                                  <select class="form-control" id="sel1">
-                                      <option>Smoking</option>
-                                      <option>Procrastinating</option>
-                                      <option>Nail-biting</option>
-                                      <option>Drinking</option>
-                                  </select>
-                              </div>
-
-                              <label>Password</label>
-
-                              <input type="password" id="password" name="password" placeholder="password@123">
-                              <label>Re-Enter Password</label>
-
-                              <input type="password" id="check_password" name="renter-password" placeholder="password@123"></input>
-
-                          <button class="waves-effect waves-purple btn-large black register" type="submit" id="submit">Submit</button>
-                      </form>
-
-              </div>
-
-            <div class="modal-footer">
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    <div class="parallax">
+        <div id="group2" class="parallax_group">
+            <div class="title">Base Layer</div>
+        </div>
+        <div class="parallax__layer parallax__layer--back">
+            <div class="title">
+                Background Layer
             </div>
-          </div>
+        </div>
+    </div>
 
-          <!-- LOGIN MODAL -->
 
-          <div id="modal2" class="modal">
-            <div class="modal-content">
+    <div class="container">
 
-              <div class="card-panel col s12">
+        <div class="baseTitle">
+            <h1 class="titleAnimate">Impulsion.io</h1>
+            <h3 style="color:white;">Break habits. Get support. Socialize.</h3>
+        </div>
+        <div class="row">
+
+            <div class="col m4 offset-m2 s12">
+                <a class="waves-effect waves-green btn-large modal-trigger homeButton" href="#modal2">Log in</a>
+            </div>
+
+            <div class="col m4 offset-m1 s12">
+                <a class="waves-effect waves-green btn-large modal-trigger homeButton" href="#modal1">Register</a>
+            </div>
+
+            <div class="card-panel col s12">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- REGISTRATION MODAL -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+
+            <h3 class="center">Register</h3>
+
+            <form class="" id="registration" method="POST" action="/register">
+
+                <div class="">
+
+                    <label>Username</label>
+
+                    <input type="text" name="username" placeholder="Username"></input>
+
+                    <label>Email</label>
+
+                    <input type="text" name="email" placeholder="john.smith@email.com"></input>
+
+
+                    <div class="form-group">
+                        <label for="sel1">Habit you want to break:</label>
+                        <select class="form-control" name="habit" id="sel1">
+                            {{#each habits}}
+                                <option value="{{this.id}}">{{this.habit}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+
+                    <label>Password</label>
+
+                    <input type="password" id="password" name="password" placeholder="password@123">
+                    <label>Re-Enter Password</label>
+
+                    <input type="password" id="check_password" name="renter-password" placeholder="password@123"></input>
+                </div>
+
+                <button class="waves-effect waves-purple btn-large black register" type="submit" id="submit">Submit</button>
+            </form>
+
+        </div>
+
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+
+            <div class="card-panel col s12">
                 <h2 class="center">Log In</h2>
                 <div class="card-panel col m8 offset-m2 s12">
 
-                  <form class="" action="/login" method="POST">
-                      <div class="">
-                          <div class="field">
-                              <div class="">
-                                  <i class="user icon"></i>
-                                  <input type="text" name="username" placeholder="Username" id="username">
-                              </div>
-                          </div>
-                          <div class="field">
-                              <div class="">
-                                  <i class="lock icon"></i>
-                                  <input type="password" name="password" placeholder="Password" id="username">
-                              </div>
-                          </div>
-                          <button class="waves-effect waves-yellow btn-large black register" type="submit" id="login">Login</button>
-                      </div>
+                    <form class="" action="/login" method="POST">
+                        <div class="">
+                            <div class="field">
+                                <div class="">
+                                    <i class="user icon"></i>
+                                    <input type="text" name="username" placeholder="Username" id="username">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="">
+                                    <i class="lock icon"></i>
+                                    <input type="password" name="password" placeholder="Password" id="username">
+                                </div>
+                            </div>
+                            <button class="waves-effect waves-yellow btn-large black register" type="submit" id="login">Login</button>
+                        </div>
 
 
 
                     </form>
 
-              </div>
+                </div>
             </div>
 
-            </div>
-          </div>
-  <script>
-  $(document).ready(function() {
-    $('.modal-trigger').leanModal();
-  });
-  </script>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('.modal-trigger').leanModal();
+        });
+    </script>
 
 </body>
