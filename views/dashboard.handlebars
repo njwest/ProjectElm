@@ -42,7 +42,7 @@
             </ul>
               <div id='sharethoughts'>
 
-                <input id="comment" type="text" 
+                <input id="comment" type="text"
                 placeholder="share your thoughts">
                 <button type="submit" class="btn">post</button>
               </div>
@@ -50,7 +50,7 @@
           </form>
         </div>
 
-        
+
 
       </div>
     </div>
@@ -119,11 +119,18 @@
 
       <div class="card-panel col s12 m3 offset-m1">
         <h5 style="text-align: center;">Achievements</h5>
+
+        <a class="btn" onclick="Materialize.toast('Achievement unlocked!', 4000);">Gimme Achievement</a>
+
       </div>
 
     </div>
   </div>
   <script>
   $(".button-collapse").sideNav();
+
+  $('#achievement').on('click', function(){
+    Materialize.toast('I am a toast', 4000);
+  });
   </script>
 </body>
