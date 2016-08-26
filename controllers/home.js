@@ -34,8 +34,8 @@ module.exports = {
             }
         }).then(function(dbUser) {
             if (!dbUser) {
-                res.json({
-                    message: "User not found"
+                res.render({
+                    error: "User not found"
                 });
             } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
                 req.session.user = dbUser.dataValues;
