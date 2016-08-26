@@ -55,8 +55,8 @@ global.db = require('./models');
 var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync().then(function() {
-  force: false
+db.sequelize.sync({  force: false}).then(function() {
+
 // return db.Habits.bulkCreate(
 //       [
 //         {habit: "Smoking"},
