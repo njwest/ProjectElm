@@ -41,6 +41,7 @@ module.exports = {
                 req.session.user = dbUser.dataValues;
                 delete req.session.user.password;
                 res.redirect('/users/' + dbUser.dataValues.username);
+
             } else {
                 res.json({
                     message: "Invalid Password"
