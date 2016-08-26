@@ -1,5 +1,5 @@
 {
-  "development": {
+  "development": {  
     "username": "root",
     "password": "ripper",
     "database": "database_development",
