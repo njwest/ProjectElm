@@ -10,14 +10,10 @@
         </nav>
 
         <div id="nav-mobile" class="side-nav fixed right-aligned chatContainer">
-          <li class="logo"><a id="logo-container" href="" class="brand-logo">
-              <object id="front-page-logo" type="image/svg+xml" data="res/impulsion.svg">Impulsion Chat (If this shows there is no SVG)</object></a></li>
+          <div class="logo"><a id="logo-container" href="#" class="brand-logo">
+              <object id="front-page-logo" type="image/svg+xml" data="img/impulsion.svg">Impulsion Chat (If this shows there is no SVG)</object></a></div>
 
           <!-- chat -->
-
-
-
-
 
 <div id='borderbox'>
 <header class="header">
@@ -63,7 +59,7 @@
   </header>
 
 
-
+<!-- main content area -->
   <div class="container dashboard">
     <div class="row">
 
@@ -82,19 +78,13 @@
         </div>
       </div>
 
-      <div class="card-panel col s12 m6">
+      <div class="card-panel col s12 m6 offset-m3">
         <h5> Have you gone a day without {{habit}}?</h5>
         <div class="buttonDiv">
           <button id="yes" class="btn green">Yes!</button>
           <button id="no" class="btn red darken-1">No...</button>
 
         </div>
-      </div>
-
-      <div class="card-panel col s12 m5 offset-m1">
-        <h5 class="welcome">
-          Tips
-        </h5>
       </div>
 
     </div>
@@ -174,7 +164,9 @@
           //console.log(this);
           $(this).attr('disabled', true);
           //progress();
-        })
+          var $toastContent = $('<span>Achievement: Day One</span><span><img src="../img/dayone.png"/>');
+          Materialize.toast($toastContent, 5000);
+        });
 
         $('#no').on('click', function(){
           $.post('/reset').then(function(val){
@@ -184,7 +176,7 @@
           console.log('Your streak has been reset!');
           $('#yes').attr('disabled', false);
           //progress();
-        })
+        });
 
         progress();
 

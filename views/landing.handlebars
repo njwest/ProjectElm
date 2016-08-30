@@ -187,6 +187,11 @@
             text-align: center;
             width: 100%;
         }
+
+        .drag-target{
+          z-index: -900;
+          background-color: black;
+        }
     </style>
 </head>
 
@@ -237,7 +242,7 @@
 
                    <p class="left"> Impulsion is a private web application that helps you free yourself from unwanted habits.</p>
                    <p class="left">
-                     Using positive reinforcement, habit-specific advice, and social elements, Impulsion empowers you to break habits while connecting you with others who are on the same journey.
+                     Using positive reinforcement, habit-specific advice, and social elements, Impulsion empowers you to break habits while connecting you with other habit-breakers.
                    </p>
 
                   </div>
@@ -250,7 +255,7 @@
 
 
 
-        <div id="group4" class="parallax__group">
+        <!-- <div id="group4" class="parallax__group">
             <div class="parallax__layer parallax__layer--base">
                 <div class="title">Base Layer</div>
             </div>
@@ -260,7 +265,7 @@
             <div class="parallax__layer parallax__layer--deep">
                 <div class="title">Deep Background Layer</div>
             </div>
-        </div>
+        </div> -->
         <div id="group5" class="parallax__group">
             <div class="parallax__layer parallax__layer--fore">
                 <div class="title">Foreground Layer</div>
@@ -269,14 +274,7 @@
                 <div class="title">Base Layer</div>
             </div>
         </div>
-        <div id="group6" class="parallax__group">
-            <div class="parallax__layer parallax__layer--back">
-                <div class="title">Background Layer</div>
-            </div>
-            <div class="parallax__layer parallax__layer--base">
-                <div class="title">Base Layer</div>
-            </div>
-        </div>
+
         <div id="group7" class="parallax__group">
             <div class="parallax__layer parallax__layer--base">
                 <div class="title">Base Layer</div>
@@ -369,9 +367,8 @@
 
             $(".button-collapse").sideNav();
 
-            window.scroll(0,document.querySelector(this.href).offsetTop - 20);
-/* prevent default action*/
-return false;
+
+
         </script>
 
 

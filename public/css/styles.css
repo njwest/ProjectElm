@@ -62,7 +62,7 @@ div.black{
 
 
 /*homepage logo color animation*/
-@keyframes example {
+@keyframes landing {
   0%   {color: white;}
   25%  {color: green;}
   50%  {color: teal;}
@@ -71,7 +71,13 @@ div.black{
 }
 
 .titleAnimate {
-    animation-name: example;
+    animation-name: landing;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+.titleAnimate2 {
+    animation-name: landing;
     animation-duration: 10s;
     animation-iteration-count: infinite;
 }
@@ -183,6 +189,11 @@ nav a:hover{
   text-decoration: none;
 }
 nav a:active{
+  color: #89bdd3;
+  text-decoration: none;
+}
+
+nav a:visited{
   color: #89bdd3;
   text-decoration: none;
 }
