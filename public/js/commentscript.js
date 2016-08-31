@@ -4,7 +4,7 @@ var main = function() {
 dataRef.on("child_added", function(snapshot){
 	var userNameList = snapshot.val().username;
 	var commentsList = snapshot.val().comment;
-	$('#comments').append('<li>' + userNameList + ': ' + commentsList + '</li>');
+	$('#comments').append('<li>' + "<b><span class='someName'>" + userNameList + '</b></span>' + ': ' + commentsList + '</li>');
 
 });
 
