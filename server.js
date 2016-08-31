@@ -57,6 +57,7 @@ global.db = require('./models');
 var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
+
 db.sequelize.sync({force:false}).then(function() {
     app.listen(PORT, function(err) {
         if (err) {

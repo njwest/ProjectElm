@@ -1,6 +1,8 @@
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
-var moment = require('moment');
+// var moment = require('moment');
+var cheerio = require('cheerio');
+var request = require('request');
 
 
 module.exports = {
@@ -24,7 +26,7 @@ module.exports = {
     renderLogin: function(req, res) {
         res.render('login');
     },
-
+    //User name authentication
     postLogin: function(req, res, next) {
         var email = req.body.email;  
         var password = req.body.password;
@@ -43,14 +45,11 @@ module.exports = {
                     where: {
                         id: dbUser.dataValues.HabitId
                     }
-                }).then(function(result){
+                }).then(function(result) {
                     req.session.user.habit = result.dataValues.habit;
-                    console.log('WHY THE FUCK IS THIS NOT WORKING!---------------!-!_1-1-1-1-1-11-1-1-- ', req.session.user.habit);
                     delete req.session.user.password;
                     res.redirect('/users/' + dbUser.dataValues.username);
-                    // console.log('wtf!!!!! FUCK THIS SHIT!: ', req.session.user.habit, 'HABIT!!!!!!!!', habit);
                 });
-                // console.log('__________________________________: ', dbUser.$modelOptions.instanceMethods.findHabit(dbUser.HabitId));
 
 
             } else {
@@ -63,8 +62,8 @@ module.exports = {
 
     //Profile _________________________________/
     renderProfile: function(req, res) {
-        if(req.params.username == req.session.user.username){
-            console.log('yo this shit is right here!!!!: ',req.session.user)
+        if (req.params.username == req.session.user.username) {
+            console.log('yo this shit is right here!!!!: ', req.session.user)
             res.render('dashboard', {
                 user: req.session.user
             });
@@ -101,13 +100,13 @@ module.exports = {
                     model: db.userhabits,
 
                 }]
-            }).then(function(dbuser){
+            }).then(function(dbuser) {
                 req.session.user = dbuser.dataValues;
                 return db.Userhabits.create({
                     UserId: dbuser.id,
                     HabitId: dbuser.HabitId
                 })
-            }).then(function(dbuser){
+            }).then(function(dbuser) {
                 res.redirect('/users/' + req.session.user.username);
             })
             .catch(function(err) {
@@ -118,60 +117,66 @@ module.exports = {
 
 
     },
-    updateStreak: function(req, res){
-
+    compareTime: function(req, res) {
+        var today = new Date().toISOString().substr(0, 10);
+        // //     // returns 2016-08-19T16:55:45.635Z
+        // //     //returns 2016-08-19
         db.Userhabits.findOne({
-            where:{UserId: req.session.user.id}
-        }).then(function(user){
-            if(user){
+            where: {
+                UserId: req.session.user.id
+            }
+        }).then(function(user) {
+            if (user) {
                 var updatedStreak = user.streak + 1;
                 return user.update({
                     streak: updatedStreak
-                }).then(function(user) {
-                    res.send({success: true});
                 })
             }
+        }).then(function(user) {
+            res.json(user);
         })
 
 
-},
-    compareTime: function(req, res){
-         db.Userhabits.findOne({
-            where:{UserId: req.session.user.id}
-        }).then(function(user){
-            if(user){
-            var timestamp = user.updatedAt;
-            //timestamp = moment().format(timestamp);
-            var today = moment().toDate();
+    },
+    compareTime: function(req, res) {
+        db.Userhabits.findOne({
+            where: {
+                UserId: req.session.user.id
+            }
+        }).then(function(user) {
+            if (user) {
+                var timestamp = user.updatedAt;
+                //timestamp = moment().format(timestamp);
+                var today = moment().toDate();
 
-            if(timestamp == null){
-               res.json('This is the users first time');
-           }
+                if (timestamp == null) {
+                    res.json('This is the users first time');
+                }
 
-             var dayLater = moment(timestamp).add(1, 'd');
-             var check = moment(today).isSame(timestamp, 'day');
-             var check2 = moment(today).isSame(dayLater, 'day');
+                var dayLater = moment(timestamp).add(1, 'd');
+                var check = moment(today).isSame(timestamp, 'day');
+                var check2 = moment(today).isSame(dayLater, 'day');
 
-             if(check == true){
-                 res.json('deny');
-             }
-             else if(check2 == true){
-                res.json('approve');
-             }
-             else{
-                res.json('update');
-             }
+                if (check == true) {
+                    res.json('deny');
+                } else if (check2 == true) {
+                    res.json('approve');
+                } else {
+                    res.json('update');
+                }
 
             }
         })
 
     },
 
-    resetStreak: function(req, res){
-         db.Userhabits.findOne({
-            where:{UserId: req.session.user.id}
-        }).then(function(user){
-            if(user){
+    resetStreak: function(req, res) {
+        db.Userhabits.findOne({
+            where: {
+                UserId: req.session.user.id
+            }
+        }).then(function(user) {
+            if (user) {
 
                 user.update({
                     streak: 0
@@ -184,42 +189,38 @@ module.exports = {
         })
     },
 
-    progressBar: function(req, res){
+    progressBar: function(req, res) {
         db.Userhabits.findOne({
-            where:{UserId: req.session.user.id}
-        }).then(function(user){
-            if(user){
-               res.json(user.streak);
+            where: {
+                UserId: req.session.user.id
+            }
+        }).then(function(user) {
+            if (user) {
+                res.json(user.streak);
             }
         })
     },
 
-    logout: function(req, res){
+    logout: function(req, res) {
         delete req.session.user
         res.redirect('/');
     },
 
-    dashboard: function(req, res){
+    dashboard: function(req, res) {
         res.render('dashboard');
+    },
+    renderTips: function(req, res){
+        var habit = req.session.user.habit;
+        var results = [];
+        request('https://www.google.com/search?q=quit+'+habit+'&num=10', function(error, respsonse, html){
+            var $ = cheerio.load(html);
+            $('h3').each(function(i, element){
+                var info = $(this).text()
+                results.push(info)
+                console.log(info)
+                console.log(results)
+            });
+        })
+        res.json(results)
     }
-    //
-    // updateStreak : function(req, res){
-    //     sequelize.query('SELECT * FROM Userhabits WHERE id="IndividualUserID"', function(err, result){
-    //         if (err) throw err;
-    //         var streak = result.streak;
-    //         var streak = streak++;
-    //
-    //         sequelize.query('UPDATE Userhabits SET Streak=""' + streak + 'WHERE id="IndividualUserID"', function(err, result){
-    //             if (err) throw err;
-    //         })
-    //     })
-    // },
-    //
-    // resetStreak: function(req, res){
-    //     sequelize.query('UPDATE Userhabits SET Streak="0" WHERE id="InidivdualUserID"', function(err, result){
-    //         if (err) throw err;
-    //
-    //     })
-    // }
-
 };
