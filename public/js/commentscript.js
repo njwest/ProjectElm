@@ -3,20 +3,41 @@ var main = function() {
 
 dataRef.on("child_added", function(snapshot){
 	var userNameList = snapshot.val().username;
-	$('#comments').append('<li>' + commentsList + ' ')
+	$('#comments').append('<li>' + userNameList + '')
 	var commentsList = snapshot.val().comment;
 	$('#comments').append(' ' + commentsList + '</li>')
 
 });
 
 
+
+
 	$('form').submit(function(event) {
-		var comment = $('#comment').val();
-		var username = '{{user.username}}'
+
+			var comment = $('#comment').val();
+			$.ajax({
+      type:'GET',
+			url: '/api/user',
+			dataType: 'json',
+			success: function(data){
+				var myUsername = data.username;
+			console.log(myUsername + 'it worked')
+
+
+		var username = data.username;
+
 		dataRef.push({
 			comment: comment,
 			username: username
 		});
+
+
+               }
+           })
+
+
+
+		
 
 		// $('#comments').append('<li>' + comment + '</li>');
 
