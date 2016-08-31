@@ -1,7 +1,8 @@
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
 var moment = require('moment');
-
+var request = require('request');
+var cheerio = require('cheerio');
 
 module.exports = {
     //Landing Page _________________________________/
@@ -201,25 +202,30 @@ module.exports = {
 
     dashboard: function(req, res){
         res.render('dashboard');
-    }
-    //
-    // updateStreak : function(req, res){
-    //     sequelize.query('SELECT * FROM Userhabits WHERE id="IndividualUserID"', function(err, result){
-    //         if (err) throw err;
-    //         var streak = result.streak;
-    //         var streak = streak++;
-    //
-    //         sequelize.query('UPDATE Userhabits SET Streak=""' + streak + 'WHERE id="IndividualUserID"', function(err, result){
-    //             if (err) throw err;
-    //         })
-    //     })
-    // },
-    //
-    // resetStreak: function(req, res){
-    //     sequelize.query('UPDATE Userhabits SET Streak="0" WHERE id="InidivdualUserID"', function(err, result){
-    //         if (err) throw err;
-    //
-    //     })
-    // }
+    },
 
+    renderTips: function(req, res){
+        //res.json(req.session.user.habit);
+        if(req.session.user.habit === 'Smoking'){
+            var result = [];
+            request('http://www.webmd.com/smoking-cessation/quit-smoking', function(error, response, html){
+                var $ = cheerio.load(html);
+
+                $('p').each(function(i, element){
+                    var info = $(this).text();
+                    result.push(info);
+                })
+            res.json({
+                1: result[15],
+                2: result[16],
+                3: result[17],
+                4: result[18],
+                5: result[19],
+                6: result[20]
+            });
+        });
+            
+        }
+    }
+    
 };
