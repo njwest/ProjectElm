@@ -97,17 +97,33 @@
       </div>
 
       <div class="card-panel col s12 m6 offset-m1">
-        <h5 style="text-align: center;">Tips</h5>
+        <h5 style="text-align: center;">Tips <br> <ul id="tips"></ul></h5>
       </div>
 
     </div>
   </div>
+ 
   <script>
   $(".button-collapse").sideNav();
   </script>
 
   <script>
       $(document).ready(function(){
+        
+        $.ajax({
+          type: "GET",
+          url: '/tips',
+          dataType: "json",
+          async: true,
+          success: function(data) {
+
+            console.log(data);
+            for(i=1; i<7; i++){
+              $('#tips').append('<li>' + data.i + '</li>');
+            }
+        }
+      });
+
         var streak=0;
 
         function progress(){
