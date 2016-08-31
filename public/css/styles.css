@@ -202,6 +202,15 @@ nav a:visited{
   background-color: rgba(0, 0, 0, .5);
 }
 
+.toast{
+  height: auto;
+}
+
+.achieveImg{
+  display: block;
+  margin: auto;
+}
+
 @media only screen and (max-width: 992px) {
   .side-nav.fixed {
     -webkit-transform: translateX(105%)!important;

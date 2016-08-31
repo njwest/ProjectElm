@@ -11,7 +11,7 @@
 
         <div id="nav-mobile" class="side-nav fixed right-aligned chatContainer">
           <div class="logo"><a id="logo-container" href="#" class="brand-logo">
-              <object id="front-page-logo" type="image/svg+xml" data="img/impulsion.svg">Impulsion Chat (If this shows there is no SVG)</object></a></div>
+              <object id="front-page-logo" type="image/svg+xml" data="../img/impulsion.png">Impulsion</object></a></div>
 
           <!-- chat -->
 
@@ -53,8 +53,6 @@
     </div>
   </div>
 
-
-
         </div>
   </header>
 
@@ -90,16 +88,16 @@
     </div>
     <div class="row">
 
-      <div class="card-panel col s12 m3">
-        <h5 style="text-align: center;">Tips</h5>
-      </div>
-
-      <div class="card-panel col s12 m4 offset-m1">
-        <h5 style="text-align: center;">Longest Streak: 10 Days</h5>
-      </div>
-
-      <div class="card-panel col s12 m3 offset-m1">
+      <div class="card-panel col s12 m5">
         <h5 style="text-align: center;">Achievements</h5>
+        <div class="card-panel col s12 m12" id="achievements">
+
+        </div>
+
+      </div>
+
+      <div class="card-panel col s12 m6 offset-m1">
+        <h5 style="text-align: center;">Tips</h5>
       </div>
 
     </div>
@@ -110,6 +108,7 @@
 
   <script>
       $(document).ready(function(){
+        var streak=0;
 
         function progress(){
           $.ajax({
@@ -124,8 +123,20 @@
             var string = "width:" + progress + "%";
             data = data.toString();
             $('#text').text(data + ' Day(s) Done!');
-            $('#title').text('You have gone ' + data + ' day(s) without...');
+            $('#title').text('You have gone ' + data + ' day(s) without smoking!');
             $('#goal').attr('style', string);
+
+            if (data == 0){
+              $('#achievements').empty();
+            }
+            if (data == 1 || (data < 10 && data > 0)){
+              $('#achievements').append(' <h5 class="center">Day 1</h5> <img class="achieveImg" src="../img/day1.png" alt="Day 1 Achievement"/ >');
+            } else if(data == 10 || (data > 10 && data <30)){
+              $('#achievements').append('<span> <h5>Day 1</h5> <img class="achieveImg" src="../img/day1.png"/>');
+              $('#achievements').append(' <h5 class="center">10 Days In!</h5> <img class="achieveImg" src="../img/10days.png" alt="10 Days In Achievement"/ >')
+            }
+            streak = data;
+            console.log("var streak: " +streak);
         }
       });
 
@@ -153,6 +164,7 @@
             if(data == 'approve'){
               console.log('You can press the button!');
             }
+
         }
       });
 
@@ -164,8 +176,15 @@
           //console.log(this);
           $(this).attr('disabled', true);
           //progress();
-          var $toastContent = $('<span>Achievement: Day One</span><span><img src="../img/dayone.png"/>');
+          if (streak == 0){
+          var $toastContent = $('<p>Achievement unlocked: Day One <img src="../img/day1.png"/></p>');
           Materialize.toast($toastContent, 5000);
+          }
+
+          if (streak == 9){
+            var $toastContent = $('<p>Achievement unlocked: Ten Days In! <img src="../img/10days.png"/></p>');
+            Materialize.toast($toastContent, 5000);
+          }
         });
 
         $('#no').on('click', function(){
@@ -181,7 +200,11 @@
         progress();
 
 
-     })
+    $('.collapsible').collapsible({
+     accordion : false
+   });
+
+     });
 
   </script>
 </body>

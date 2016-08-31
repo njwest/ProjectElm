@@ -3,7 +3,6 @@
     <style>
         /* Parallax base styles
   --------------------------------------------- */
-
         .parallax {
             height: 500px;
             /* fallback for older browsers */
@@ -105,14 +104,6 @@
         /* style the groups
   --------------------------------------------- */
 
-        #group1 {
-            z-index: 5;
-            /* slide over group 2 */
-        }
-
-        #group1 .parallax__layer--base {
-            background: rgb(102, 204, 102);
-        }
         /*landing*/
         #group2 {
             z-index: 3;
@@ -192,6 +183,10 @@
           z-index: -900;
           background-color: black;
         }
+
+        .modal-content{
+          background-color: rgba(0, 0, 0, 0);
+        }
     </style>
 </head>
 
@@ -236,13 +231,13 @@
 
               <div class="title">
                 <div class="row">
-                  <a name="about" style="display: inline-block; padding-top:50px"></a>
+                  <a name="about" style="display: inline-block; padding-top:75px"></a>
                   <div class="card-panel col s12" id="about">
                     <h3 class="center">What is Impulsion?</h3>
 
                    <p class="left"> Impulsion is a private web application that helps you free yourself from unwanted habits.</p>
                    <p class="left">
-                     Using positive reinforcement, habit-specific advice, and social elements, Impulsion empowers you to break habits while connecting you with other people who are breaking habits.
+                     Using positive reinforcement, habit-specific advice, and social elements, Impulsion empowers you to break habits while connecting you with other people with similar goals.
                    </p>
 
                   </div>
