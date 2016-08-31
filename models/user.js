@@ -21,10 +21,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        // habits: {
-        //         type: DataTypes.STRING,
-        //         allowNull: false
-        // },
         HabitId: {
             type: DataTypes.INTEGER,
             // allowNull: false
@@ -39,7 +35,16 @@ module.exports = function(sequelize, DataTypes) {
             },
             validPassword: function(password) {
                 return bcrypt.compareSync(password, this.password);
-            },
+            }
+            // findHabit: function(habitId){
+            //     db.Habits.findOne({
+            //         where:{
+            //             id: habitId
+            //         }
+            //     }).then(function(habit){
+            //         return habit.dataValues.habit;
+            //     })
+            // }
         },
         classMethods: {
             associate: function(models) {
