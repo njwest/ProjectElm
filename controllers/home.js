@@ -1,8 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
 // var moment = require('moment');
-var cheerio = require('cheerio');
-var request = require('request');
+
 
 
 module.exports = {
@@ -208,21 +207,5 @@ module.exports = {
 
     dashboard: function(req, res) {
         res.render('dashboard');
-    },
-    renderTips: function(req, res){
-        var habit = req.session.user.habit;
-        var results = [];
-        request('https://www.google.com/search?q=quit+'+habit+'&num=10', function(error, respsonse, html){
-            var $ = cheerio.load(html);
-            $('h3').each(function(i, element){
-                var title = $(this).text()
-                var link = element.children[0].attribs.href.replace('/url?q=', '');
-
-                results.push({title: title, link: link})
-                console.log(element.children[0].attribs.href);
-            });
-            res.json(results);
-        });
-
     }
 };
