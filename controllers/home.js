@@ -39,8 +39,19 @@ module.exports = {
                 });
             } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
                 req.session.user = dbUser.dataValues;
-                delete req.session.user.password;
-                res.redirect('/users/' + dbUser.dataValues.username);
+                db.Habits.findOne({
+                    where: {
+                        id: dbUser.dataValues.HabitId
+                    }
+                }).then(function(result){
+                    req.session.user.habit = result.dataValues.habit;
+                    console.log('WHY THE FUCK IS THIS NOT WORKING!---------------!-!_1-1-1-1-1-11-1-1-- ', req.session.user.habit);
+                    delete req.session.user.password;
+                    res.redirect('/users/' + dbUser.dataValues.username);
+                    // console.log('wtf!!!!! FUCK THIS SHIT!: ', req.session.user.habit, 'HABIT!!!!!!!!', habit);
+                });
+                // console.log('__________________________________: ', dbUser.$modelOptions.instanceMethods.findHabit(dbUser.HabitId));
+
 
             } else {
                 res.json({
@@ -53,6 +64,7 @@ module.exports = {
     //Profile _________________________________/
     renderProfile: function(req, res) {
         if(req.params.username == req.session.user.username){
+            console.log('yo this shit is right here!!!!: ',req.session.user)
             res.render('dashboard', {
                 user: req.session.user
             });
@@ -120,7 +132,7 @@ module.exports = {
                 })
             }
         })
-    
+
 
 },
     compareTime: function(req, res){
@@ -135,7 +147,7 @@ module.exports = {
             if(timestamp == null){
                res.json('This is the users first time');
            }
-             
+
              var dayLater = moment(timestamp).add(1, 'd');
              var check = moment(today).isSame(timestamp, 'day');
              var check2 = moment(today).isSame(dayLater, 'day');
@@ -152,7 +164,7 @@ module.exports = {
 
             }
         })
-    
+
     },
 
     resetStreak: function(req, res){
@@ -160,7 +172,7 @@ module.exports = {
             where:{UserId: req.session.user.id}
         }).then(function(user){
             if(user){
-                
+
                 user.update({
                     streak: 0
                 }).then(function() {
@@ -211,4 +223,3 @@ module.exports = {
     // }
 
 };
-
