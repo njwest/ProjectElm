@@ -1,211 +1,226 @@
 <body class="dash">
-  <header>
+    <header>
         <nav class="top-nav">
-          <div class="container dashNav">
-            <div class="nav-wrapper">
-            <ul>
-              <a href="/logout"><li class="btn darkGray logOut">Log Out</li></a>
+            <div class="container dashNav">
+                <div class="nav-wrapper">
+                    <ul>
+                        <a href="/logout">
+                            <li class="btn darkGray logOut">Log Out</li>
+                        </a>
+                </div>
             </div>
-          </div>
         </nav>
 
         <div id="nav-mobile" class="side-nav fixed right-aligned chatContainer">
-          <div class="logo"><a id="logo-container" href="#" class="brand-logo">
-              <object id="front-page-logo" type="image/svg+xml" data="../img/impulsion.png">Impulsion</object></a></div>
-
-          <!-- chat -->
-
-<div id='borderbox'>
-<header class="header">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-md-12">
-            <div id='chathead'>
-              <h1>Chat</h1>
+            <div class="logo">
+                <a id="logo-container" href="#" class="brand-logo">
+                    <object id="front-page-logo" type="image/svg+xml" data="../img/impulsion.png">Impulsion</object>
+                </a>
             </div>
-          </div>
-        </div>
-      </div>
-</header>
 
-    <div class="main">
-      <div class="container">
-        <div class="row">
-          <form class="form">
-            <div class="col-xs-8 col-md-10">
-            <ul class="comments" id="comments">
-              <li></li>
-              <li></li>
-            </ul>
-              <div id='sharethoughts'>
+            <!-- chat -->
 
-                <input id="comment" type="text"
-                placeholder="share your thoughts">
-                <button type="submit" class="btn">post</button>
-              </div>
+            <div id='borderbox'>
+                <header class="header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <div id='chathead'>
+                                    <h1>Chat</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="main">
+                    <div class="container">
+                        <div class="row">
+                            <form class="form">
+                                <div class="col-xs-8 col-md-10">
+                                    <ul class="comments" id="comments">
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+                                    <div id='sharethoughts'>
+
+                                        <input id="comment" type="text" placeholder="share your thoughts">
+                                        <button type="submit" class="btn">post</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                    </div>
+                </div>
             </div>
-          </form>
+
         </div>
+    </header>
 
 
+    <!-- main content area -->
+    <div class="container dashboard">
+        <div class="row">
 
-      </div>
+            <div class="card-panel col s12 m12 welcome">
+                <h3>Welcome {{user.username}}!</h3>
+                <h4 id="title">You have gone {{user.HabitId}} days without {{user.habit}}.</h4>
+                <h4>Current goal: 10 days.</h4>
+            </div>
+
+            <div class="col s12 m12">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" id="goal" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                        <strong id="text" style="font-size:12px;">Days Complete!</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-panel col s12 m6 offset-m3">
+                <h5> Have you gone a day without {{user.habit}}?</h5>
+                <div class="buttonDiv">
+                    <button id="yes" class="btn green">Yes!</button>
+                    <button id="no" class="btn red darken-1">No...</button>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="card-panel col s12 m5">
+                <h5 style="text-align: center;">Achievements</h5>
+                <div class="card-panel col s12 m12" id="achievements">
+
+                </div>
+
+            </div>
+
+            <div class="card-panel col s12 m6 offset-m1">
+                <h5 style="text-align: center;">Tips</h5>
+                <ul class="tip-links">
+                </ul>
+            </div>
+
+        </div>
     </div>
-  </div>
+    <script>
+        $(".button-collapse").sideNav();
+    </script>
 
-        </div>
-  </header>
+    <script>
+        $(document).ready(function() {
+            var streak = 0;
 
+            function progress() {
+                $.ajax({
+                    type: "GET",
+                    url: 'http://localhost:3000/progress',
+                    dataType: "json",
+                    async: true,
+                    success: function(data) {
 
-<!-- main content area -->
-  <div class="container dashboard">
-    <div class="row">
+                        console.log(data);
+                        var progress = data * 10;
+                        var string = "width:" + progress + "%";
+                        data = data.toString();
+                        $('#text').text(data + ' Day(s) Done!');
+                        $('#title').text('You have gone ' + data + ' day(s) without {{user.habit}}');
+                        $('#goal').attr('style', string);
 
-      <div class="card-panel col s12 m12 welcome">
-        <h3>Welcome {{user.username}}!</h3>
-        <h4 id="title">You have gone {{user.HabitId}} days without {{user.habit}}.</h4>
-        <h4>Current goal: 10 days.</h4>
-      </div>
+                        if (data == 0) {
+                            $('#achievements').empty();
+                        }
 
-      <div class="col s12 m12">
-        <div class="progress">
-          <div class="progress-bar progress-bar-success" id="goal" role="progressbar" aria-valuenow="0"
-          aria-valuemin="0" aria-valuemax="100" style="width:0%">
-            <strong id="text" style="font-size:12px;">Days Complete!</strong>
-          </div>
-        </div>
-      </div>
+                        if (data == 1 || (data < 10 && data > 0)) {
+                            $('#achievements').append(' <h5 class="center">Day 1</h5> <img class="achieveImg" src="../img/day1.png" alt="Day 1 Achievement"/ >');
+                        } else if (data == 10 || (data > 10 && data < 30)) {
+                            $('#achievements').append('<span> <h5>Day 1</h5> <img class="achieveImg" src="../img/day1.png"/>');
+                            $('#achievements').append(' <h5 class="center">10 Days In!</h5> <img class="achieveImg" src="../img/10days.png" alt="10 Days In Achievement"/ >')
+                        }
+                        streak = data;
+                        console.log("var streak: " + streak);
+                    }
+                });
 
-      <div class="card-panel col s12 m6 offset-m3">
-        <h5> Have you gone a day without {{user.habit}}?</h5>
-        <div class="buttonDiv">
-          <button id="yes" class="btn green">Yes!</button>
-          <button id="no" class="btn red darken-1">No...</button>
-
-        </div>
-      </div>
-
-    </div>
-    <div class="row">
-
-      <div class="card-panel col s12 m5">
-        <h5 style="text-align: center;">Achievements</h5>
-        <div class="card-panel col s12 m12" id="achievements">
-
-        </div>
-
-      </div>
-
-      <div class="card-panel col s12 m6 offset-m1">
-        <h5 style="text-align: center;">Tips</h5>
-      </div>
-
-    </div>
-  </div>
-  <script>
-  $(".button-collapse").sideNav();
-  </script>
-
-  <script>
-      $(document).ready(function(){
-        var streak=0;
-
-        function progress(){
-          $.ajax({
-          type: "GET",
-          url: 'http://localhost:3000/progress',
-          dataType: "json",
-          async: true,
-          success: function(data) {
-
-            console.log(data);
-            var progress = data * 10;
-            var string = "width:" + progress + "%";
-            data = data.toString();
-            $('#text').text(data + ' Day(s) Done!');
-            $('#title').text('You have gone ' + data + ' day(s) without {{user.habit}}');
-            $('#goal').attr('style', string);
-
-            if (data == 0){
-              $('#achievements').empty();
             }
 
-            if (data == 1 || (data < 10 && data > 0)){
-              $('#achievements').append(' <h5 class="center">Day 1</h5> <img class="achieveImg" src="../img/day1.png" alt="Day 1 Achievement"/ >');
-            } else if(data == 10 || (data > 10 && data <30)){
-              $('#achievements').append('<span> <h5>Day 1</h5> <img class="achieveImg" src="../img/day1.png"/>');
-              $('#achievements').append(' <h5 class="center">10 Days In!</h5> <img class="achieveImg" src="../img/10days.png" alt="10 Days In Achievement"/ >')
-            }
-            streak = data;
-            console.log("var streak: " +streak);
-        }
-      });
+            $.ajax({
+                type: "GET",
+                url: 'http://localhost:3000/compare',
+                dataType: "json",
+                async: true,
+                success: function(data) {
 
-        }
+                    console.log(data);
 
-        $.ajax({
-          type: "GET",
-          url: 'http://localhost:3000/compare',
-          dataType: "json",
-          async: true,
-          success: function(data) {
+                    if (data == 'deny') {
+                        $('#yes').attr('disabled', true);
+                        console.log('You cannot press the button! It has not been more than a day since the last press!');
+                    }
 
-            console.log(data);
+                    if (data == 'update') {
+                        $.post('http://localhost:3000/reset');
+                        console.log('You can press the button but your streak has been reset');
+                    }
 
-            if(data == 'deny'){
-              $('#yes').attr('disabled', true);
-              console.log('You cannot press the button! It has not been more than a day since the last press!');
-            }
+                    if (data == 'approve') {
+                        console.log('You can press the button!');
+                    }
 
-            if(data == 'update'){
-              $.post('http://localhost:3000/reset');
-              console.log('You can press the button but your streak has been reset');
-            }
+                }
+            });
 
-            if(data == 'approve'){
-              console.log('You can press the button!');
-            }
-
-        }
-      });
+            $.ajax({
+                type:'GET',
+                url: '/api/tips',
+                dataType: 'json',
+                success: function(data){
+                    for(var i=0; i < data.length; i++){
+                        $('.tip-links').append('<li><a href="' + data[i].link +'">'+data[i].title+'</a></li>' )
+                    }
+                }
+            })
 
 
-        $('#yes').on('click', function(){
-          $.post('/update').then(function(val){
+            $('#yes').on('click', function() {
+                $.post('/update').then(function(val) {
+                    progress();
+                });
+                //console.log(this);
+                $(this).attr('disabled', true);
+                //progress();
+                if (streak == 0) {
+                    var $toastContent = $('<p>Achievement unlocked: Day One <img src="../img/day1.png"/></p>');
+                    Materialize.toast($toastContent, 5000);
+                }
+
+                if (streak == 9) {
+                    var $toastContent = $('<p>Achievement unlocked: Ten Days In! <img src="../img/10days.png"/></p>');
+                    Materialize.toast($toastContent, 5000);
+                }
+            });
+
+            $('#no').on('click', function() {
+                $.post('/reset').then(function(val) {
+                    progress();
+                });
+
+                console.log('Your streak has been reset!');
+                $('#yes').attr('disabled', false);
+                //progress();
+            });
+
             progress();
-          });
-          //console.log(this);
-          $(this).attr('disabled', true);
-          //progress();
-          if (streak == 0){
-          var $toastContent = $('<p>Achievement unlocked: Day One <img src="../img/day1.png"/></p>');
-          Materialize.toast($toastContent, 5000);
-          }
 
-          if (streak == 9){
-            var $toastContent = $('<p>Achievement unlocked: Ten Days In! <img src="../img/10days.png"/></p>');
-            Materialize.toast($toastContent, 5000);
-          }
+
+            $('.collapsible').collapsible({
+                accordion: false
+            });
+
         });
-
-        $('#no').on('click', function(){
-          $.post('/reset').then(function(val){
-            progress();
-          });
-
-          console.log('Your streak has been reset!');
-          $('#yes').attr('disabled', false);
-          //progress();
-        });
-
-        progress();
-
-
-    $('.collapsible').collapsible({
-     accordion : false
-   });
-
-     });
-
-  </script>
+    </script>
 </body>
