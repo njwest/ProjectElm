@@ -115,7 +115,7 @@ a.homeButton{
 
 .chat{
   margin: 50px 10px 50px 10px;
-  background-color: #fff;
+  background-color: #white;
 }
 
 .top-nav{
@@ -259,3 +259,4 @@ nav a:visited{
     display: none;
   }
 }
+

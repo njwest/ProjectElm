@@ -2,21 +2,21 @@ form input {
 	background: #f0f0f0;
 
 	border: none;
-	border-left: 2px solid #fff;
+	border-left: 1px solid #fff;
 
 	font-size: 14px;
-	padding: 20px;
-	width: 50%;
+	padding: 10px;
+	width: 100%;
 
 	transition: background 2s, border-left 2s;
 }
 
 
 li {
-	padding-left: 20px;
-	border-left: 2px solid #000;
+	padding-left: 10px;
 	font-size: 14px;
-	margin: 0 0 36px;
+	margin: 0 0 5px;
+	height: 20px;
 }
 
 form input:focus {
@@ -34,27 +34,54 @@ button.btn.hover {
 }
 
 .comments {
-	margin-top: 20px;
+	margin-top: 5px;
 	list-style: none;
 	padding-left: 0px;
 	overflow: scroll;
 	height: 300px;
+	width: 300px;
 }
 
 #borderbox {
-	border: 2px solid black;
+	border: 0px solid black;
 	margin: 20px 20px 20px 20px;
-	padding: 20px 20px 20px 20px;
+	padding: 0px;
 }
 
 #chathead {
-	text-align: center;
-	
-
+	text-align: left;
+	margin-bottom: -10px;
+	color: #17a5e0;
+	padding: 20px;
+	font-weight: bold;
+	margin-left: -62px;
+	border-top: 1px dotted #17a5e0;
+	border-bottom: 1px dotted #17a5e0;
 }
 
 #sharethoughts {
-	text-align: center;
-	margin: 20px 0px 0px 0px;
+	text-align: left;
+	margin: 30px 0px 0px 0px;
+	width: 220px;
+	margin-left: -48px;
+	color: white;
 }
 
+#comments {
+	margin-left: -70px;
+	margin-top: -50px;
+}
+
+.someName {
+	color: black;
+}
+
+#comment {
+ font-style: italic;
+ padding-left: 10px;
+ color: black;
+}
+
+#entireChat {
+	background-color: none;
+}
