@@ -63,17 +63,26 @@ div.black{
 
 /*homepage logo color animation*/
 @keyframes landing {
-  0%   {color: white;}
-  25%  {color: green;}
-  50%  {color: teal;}
-  75%  {color: aqua;}
-  100% {color: white;}
+  0%   {color: black;}
+  33%  {color: teal;}
+  66% {color: #17a5e0;}
+  100% {color: aqua;}
+}
+
+@keyframes infinite {
+  0%   {color: aqua;}
+  50% {color: #17a5e0;}
+  100% {color: aqua;}
 }
 
 .titleAnimate {
     animation-name: landing;
-    animation-duration: 10s;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+    animation-name: infinite;
+    animation-duration: 3s;
     animation-iteration-count: infinite;
+    color: #17a5e0;
 }
 
 .titleAnimate2 {
@@ -151,6 +160,9 @@ margin-bottom: 10px
     color: #89bdd3;
   }
 
+  .logoBlue{
+    background-color: #17a5e0;
+  }
   .lightBlue{
     background-color:#9ad3de;
   }
