@@ -1,4 +1,4 @@
- <script type="text/javascript" src="/js/commentscript.js"></script>
+<script type="text/javascript" src="/js/commentscript.js"></script>
 <body class="dash">
     <header>
         <nav class="top-nav">
@@ -117,7 +117,7 @@
             function progress() {
                 $.ajax({
                     type: "GET",
-                    url: 'http://localhost:3000/progress',
+                    url: '/progress',
                     dataType: "json",
                     async: true,
                     success: function(data) {
@@ -149,7 +149,7 @@
 
             $.ajax({
                 type: "GET",
-                url: 'http://localhost:3000/compare',
+                url: '/compare',
                 dataType: "json",
                 async: true,
                 success: function(data) {
@@ -178,8 +178,8 @@
                 url: '/api/tips',
                 dataType: 'json',
                 success: function(data){
-                    for(var i=0; i < data.length; i++){
-                        $('.tip-links').append('<li><a href="' + data[i].link +'">'+data[i].title+'</a></li>' )
+                    for(var i=0; i < 10; i++){
+                        $('.tip-links').append('<li><a href="' + data[i].link +'" target="_blank">'+data[i].title+' </a></li>' )
                     }
                 }
             })

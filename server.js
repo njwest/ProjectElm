@@ -4,7 +4,6 @@ var bodyParser      = require('body-parser');
 var exphbs          = require('express-handlebars');
 var methodOverride  = require('method-override');
 var logger          = require('morgan');
-var passport        = require('passport');
 var session         = require('express-session');
 var FileStore       = require('session-file-store')(session);
 var flash           = require('express-flash');
@@ -61,7 +60,7 @@ var PORT = process.env.PORT || 3000;
 //Starting the server, syncing our models ------------------------------------/
 
 db.sequelize.sync(
-    {force:false}
+    // {force:true}
     ).then(function() {
     app.listen(PORT, function(err) {
         if (err) {
