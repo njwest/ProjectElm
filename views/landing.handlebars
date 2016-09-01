@@ -125,43 +125,7 @@
             background-image: url('../img/weirdblue.png')
 
         }
-        /*our team*/
-        #group4 {
-            z-index: 2;
-            /* slide under group 3 and 5 */
-        }
 
-        #group4 .parallax__layer--deep {
-            background: rgb(184, 223, 101);
-        }
-        /*contact us*/
-        #group5 {
-            z-index: 3;
-            /* slide over group 4 and 6 */
-        }
-
-        #group5 .parallax__layer--base {
-            background: rgb(214, 229, 100);
-        }
-
-        #group6 {
-            z-index: 2;
-            /* slide under group 5 and 7 */
-        }
-
-        #group6 .parallax__layer--back {
-            background: rgb(245, 235, 100);
-        }
-
-        #group7 {
-            z-index: 3;
-            /* slide over group 7 */
-        }
-
-        #group7 .parallax__layer--base {
-            background: rgb(255, 241, 100);
-        }
-        /* misc
   --------------------------------------------- */
 
         .left{
@@ -184,11 +148,15 @@
           background-color: black;
         }
 
+        nav{
+          overflow: auto;
+          height: 65px;
+        }
     </style>
 </head>
 
 <body>
-
+  <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">
             <img src="/img/impulsion.png" class="brand-logo center"/>
@@ -207,33 +175,30 @@
             </ul>
         </div>
     </nav>
-
-
+  </div>
 
     <div class="parallax">
         <div id="group2" class="parallax__group">
             <div class="parallax__layer parallax__layer--base">
-                <h3 class="tagline">Break habits. Get support. Socialize.<br/>                <a class="waves-effect waves-green btn modal-trigger homeButton" href="#modal1">Get Started</a></h3>
+              <h1 class="title titleAnimate">Impulsion.io</h1>
+
+                <h3 class="tagline">Break habits. Get support. Socialize.<br/>
+                  <a class="waves-effect waves-green btn modal-trigger homeButton" href="#modal1">Get Started</a></h3>
                 <br/>
 
-
-
             </div>
-            <a name="about"></a>
 
             <div class="parallax__layer parallax__layer--back black">
-                <h1 class="title titleAnimate">Impulsion.io</h1>
             </div>
         </div>
-
 
         <div id="group3" class="parallax__group">
             <div class="parallax__layer parallax__layer--fore">
 
               <div class="title">
                 <div class="row">
-                  <a name="about" style="display: inline-block; padding-top:75px"></a>
-                  <div class="card-panel col s12" id="about">
+                  <a style="display: inline-block; padding-top:75px"></a>
+                  <div name="about" class="card-panel col s12 " id="about">
                     <h3 class="center">What is Impulsion?</h3>
 
                    <p class="left"> Impulsion is a private web application that helps you free yourself from unwanted habits.</p>
@@ -251,33 +216,7 @@
 
 
 
-        <!-- <div id="group4" class="parallax__group">
-            <div class="parallax__layer parallax__layer--base">
-                <div class="title">Base Layer</div>
-            </div>
-            <div class="parallax__layer parallax__layer--back">
-                <div class="title">Background Layer</div>
-            </div>
-            <div class="parallax__layer parallax__layer--deep">
-                <div class="title">Deep Background Layer</div>
-            </div>
-        </div> -->
-        <div id="group5" class="parallax__group">
-            <div class="parallax__layer parallax__layer--fore">
-                <div class="title">Foreground Layer</div>
-            </div>
-            <div class="parallax__layer parallax__layer--base">
-                <div class="title">Base Layer</div>
-            </div>
-        </div>
-
-        <div id="group7" class="parallax__group">
-            <div class="parallax__layer parallax__layer--base">
-                <div class="title">Base Layer</div>
-            </div>
-        </div>
     </div>
-
 
     <!-- REGISTRATION MODAL -->
     <div id="modal1" class="modal">
@@ -359,11 +298,10 @@
         <script>
             $(document).ready(function() {
                 $('.modal-trigger').leanModal();
-            });
 
             $(".button-collapse").sideNav();
-
-
+            $('.scrollspy').scrollSpy();
+            });
 
         </script>
 
