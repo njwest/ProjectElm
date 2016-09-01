@@ -25,7 +25,6 @@ module.exports = {
                 var title = $(this).text()
                 var link = element.children[0].attribs.href.replace('/url?q=', '');
                 results.push({title: title, link: link})
-                console.log(element.children[0].attribs.href);
             });
             res.json(results);
         });
