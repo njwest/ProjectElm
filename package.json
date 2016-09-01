@@ -5,8 +5,7 @@
     "main": "server.js",
     "scripts": {
         "test": "npm test",
-        "dev": "grunt && sequelize db:migrate && sequelize db:seed:all && node bin/www",
-        "start": "sequelize db:migrate && sequelize db:seed:all && node bin/www"
+        "start": " sequelize db:seed:all"
     },
     "repository": {
         "type": "git",
