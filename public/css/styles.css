@@ -254,11 +254,11 @@ nav a:visited{
 
 label{
   color: black;
-  font-size: 14px;
 }
 
-input:active{
-
+label.active{
+  color: black;
+  padding-bottom: 5px;
 }
 
 .modal{
@@ -274,9 +274,13 @@ input:active{
   padding-top: 50px;
 }
 
-#closeButton{
-  padding-bottom: 10px;
-  background-color: white;
+.input-field{
+  color: black;
+  font-size: 14px;
+}
+
+#sideLogo{
+  padding-left: 25px;
 }
 
 @media only screen and (max-height: 899px){

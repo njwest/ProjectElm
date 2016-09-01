@@ -145,12 +145,14 @@
         <form class="" id="registration" method="POST" action="/register">
 
             <div class="card-panel">
-
-                    <input type="text" name="username" placeholder="Username" id="username"></input>
+              <div class="input-field">
+                    <input type="text" name="username" placeholder="Username" id="username">
                     <label>Username</label>
-
-                    <input type="text" id="email" name="email" placeholder="john.smith@email.com"></input>
+              </div>
+              <div class="input-field">
+                    <input type="text" id="email" name="email" placeholder="john.smith@email.com">
                     <label>Email</label>
+              </div>
 
                 <div class="form-group">
                   <label for="sel1">Habit you want to break</label>
@@ -160,14 +162,18 @@
                         {{/each}}
                     </select>
                 </div>
+                <br/>
 
+              <div class="input-field">
 
                 <input type="password" id="password" name="password" placeholder="password@123">
                 <label>Password</label>
+              </div>
 
-                <input type="password" id="check_password" name="renter-password" placeholder="password@123"></input>
+              <div class="input-field">
+                <input type="password" id="check_password" name="renter-password" placeholder="password@123">
                 <label>Re-Enter Password</label>
-
+              </div>
             </div>
 
             <button class="waves-effect waves-purple btn-large black register" type="submit" id="submit-registration">Submit</button>
