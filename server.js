@@ -8,6 +8,7 @@ var logger          = require('morgan');
 var passport        = require('passport');
 var session         = require('express-session');
 var FileStore       = require('session-file-store')(session);
+var flash = require('express-flash');
 
 var app = express();
 require('dotenv').config({
@@ -28,6 +29,8 @@ app.use(session({
         maxAge: 60000 * 60 * 24 * 14
     }
 }));
+
+app.use(flash());
 
 // app.use(function printSession(req, res, next) {
 //   console.log('req.session', req.session);

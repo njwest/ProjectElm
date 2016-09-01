@@ -295,7 +295,7 @@
 
                     <label>Email</label>
 
-                    <input type="text" name="email" placeholder="john.smith@email.com"></input>
+                    <input type="text" id="email" name="email" placeholder="john.smith@email.com"></input>
 
 
                     <div class="form-group">
@@ -335,7 +335,7 @@
                 <h2 class="center">Log In</h2>
                 <div class="card-panel col m8 offset-m2 s12">
 
-                    <form class="" action="/login" method="POST">
+                    <form id="login" action="/login" method="POST">
                         <div class="">
                             <div class="field">
                                 <div class="">
@@ -359,6 +359,24 @@
         <script>
             $(document).ready(function() {
                 $('.modal-trigger').leanModal();
+
+                // Error validation for the registration page
+                var $email = $('#registration #email');
+                var $password = $('#registration #password');
+                var $check_password = $('#registration #check_password');
+                if($password.val().trim() === $check_password.val().trim()){
+
+                }else {
+
+                }
+
+
+
+                $registration.submit(function(){
+                    $.post($(this).attr('action'), $(this).serialize(), function(response){
+
+                    }, 'json')
+                })
             });
 
             $(".button-collapse").sideNav();
