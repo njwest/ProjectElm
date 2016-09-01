@@ -174,8 +174,8 @@
                 url: '/api/tips',
                 dataType: 'json',
                 success: function(data){
-                    for(var i=0; i < data.length; i++){
-                        $('.tip-links').append('<li><a href="' + data[i].link +'">'+data[i].title+'</a></li>' )
+                    for(var i=0; i < 10; i++){
+                        $('.tip-links').append('<li><a href="' + data[i].link +'" target="_blank">'+data[i].title+' </a></li>' )
                     }
                 }
             })

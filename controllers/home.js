@@ -1,5 +1,6 @@
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session');
+var moment = require('moment');
 // var moment = require('moment');
 
 
@@ -108,48 +109,49 @@ module.exports = {
 
     },
     updateStreak: function(req, res){
-        db.Userhabits.findOne({
-            where:{UserId: req.session.user.id}
-        }).then(function(user){
-            if(user){
-                var updatedStreak = user.streak + 1;
-                return user.update({
-                    streak: updatedStreak
-                }).then(function(user) {
-                    res.send({success: true});
-                })
-            }
-        })
+
+            db.Userhabits.findOne({
+                where:{UserId: req.session.user.id}
+            }).then(function(user){
+                if(user){
+                    var updatedStreak = user.streak + 1;
+                    return user.update({
+                        streak: updatedStreak
+                    }).then(function(user) {
+                        res.send({success: true});
+                    })
+                }
+            })
     },
     compareTime: function(req, res){
-         db.Userhabits.findOne({
-            where:{UserId: req.session.user.id}
-        }).then(function(user){
-            if(user){
-            var timestamp = user.updatedAt;
-            //timestamp = moment().format(timestamp);
-            var today = moment().toDate();
+             db.Userhabits.findOne({
+                where:{UserId: req.session.user.id}
+            }).then(function(user){
+                if(user){
+                var timestamp = user.updatedAt;
+                //timestamp = moment().format(timestamp);
+                var today = moment().toDate();
 
-            if(timestamp == null){
-               res.json('This is the users first time');
-           }
+                if(timestamp == null){
+                   res.json('This is the users first time');
+               }
 
-             var dayLater = moment(timestamp).add(1, 'd');
-             var check = moment(today).isSame(timestamp, 'day');
-             var check2 = moment(today).isSame(dayLater, 'day');
+                 var dayLater = moment(timestamp).add(1, 'd');
+                 var check = moment(today).isSame(timestamp, 'day');
+                 var check2 = moment(today).isSame(dayLater, 'day');
 
-             if(check == true){
-                 res.json('deny');
-             }
-             else if(check2 == true){
-                res.json('approve');
-             }
-             else{
-                res.json('update');
-             }
+                 if(check == true){
+                     res.json('deny');
+                 }
+                 else if(check2 == true){
+                    res.json('approve');
+                 }
+                 else{
+                    res.json('update');
+                 }
 
-            }
-        })
+                }
+            })
 
     },
     resetStreak: function(req, res){
@@ -168,7 +170,6 @@ module.exports = {
             }
         })
     },
-
     progressBar: function(req, res){
         db.Userhabits.findOne({
             where:{UserId: req.session.user.id}
