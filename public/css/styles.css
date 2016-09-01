@@ -257,10 +257,18 @@ nav a:visited{
   margin-top: 0px;
 }
 
+label{
+  color: black;
+  font-size: 14px;
+}
+
+input:active{
+  border-bottom-color: orange;
+}
 
 #login{
   top: 25%;
-  left: 25%;
+  left: 15%;
   width: 500px;
   position: absolute;
 }
