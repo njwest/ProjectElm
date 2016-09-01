@@ -4,8 +4,7 @@
     "description": "RCB second group project ",
     "main": "server.js",
     "scripts": {
-        "test": "npm test",
-        "start": " sequelize db:seed:all"
+        "test": "npm test"
     },
     "repository": {
         "type": "git",
