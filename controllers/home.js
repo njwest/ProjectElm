@@ -14,7 +14,7 @@ module.exports = {
         });
     },
     isAuthenticated: function(req, res, next) {
-        if (req.session.user) {
+        if (req.session.user)  <script type="text/javascript" src="/js/commentscript.js"></script>{
             return next();
         } else {
             res.redirect('/login');
