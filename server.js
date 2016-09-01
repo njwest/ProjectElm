@@ -3,7 +3,6 @@ var express         = require('express');
 var bodyParser      = require('body-parser');
 var exphbs          = require('express-handlebars');
 var methodOverride  = require('method-override');
-var LocalStrategy   = require('passport-local');
 var logger          = require('morgan');
 var passport        = require('passport');
 var session         = require('express-session');
