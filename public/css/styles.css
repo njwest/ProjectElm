@@ -254,31 +254,41 @@ nav a:visited{
 
 label{
   color: black;
-  font-size: 14px;
 }
 
-input:active{
-
+label.active{
+  color: black;
+  padding-bottom: 5px;
 }
 
 .modal{
-    background: none;
+  background: none;
   margin-top: 0px;
 }
 
-#loginForm{
-  padding-top: 25%;
-  top: 20%;
-  left: 15%;
+
+
+.input-field{
+  color: black;
+  font-size: 14px;
+}
+
+#sideLogo{
+  padding-left: 25px;
 }
 
 @media only screen and (max-height: 899px){
   .landingHead{
     padding-top: 5%;
   }
-
   #aboutSection{
     padding-bottom: 100px;
+  }
+  .modal{
+    max-height:100%;
+  }
+  #modal1.modal.open{
+    margin-top: -25px;
   }
 }
 
@@ -289,6 +299,13 @@ input:active{
   #aboutSection{
     padding-bottom: 250px;
   }
+  #loginForm{
+    padding-top: 200px;
+  }
+  #modal1{
+    padding-top: 50px;
+  }
+
 }
 
 @media only screen and (max-width: 992px) {
