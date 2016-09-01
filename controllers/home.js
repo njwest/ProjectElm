@@ -109,8 +109,8 @@ module.exports = {
 
             })
             .catch(function(err) {
-                res.json({
-                    message: err.message
+                res.render('/landing'{
+                    error: err.message
                 });
             });
 
