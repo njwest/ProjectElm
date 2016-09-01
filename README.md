@@ -2,16 +2,25 @@
 
 ##About Impulsion.io
 
-This is a web application designed to help people 
+This is a web application designed to help people
 
-##Reference
+##Team
 
-Christian's Node Express-Handlebars Sequelize boilerplate
-https://github.com/ceckenrode/node-handlebars-sequelize-boilerplate
+Arnold Lei
+Nick West
+Justin Biebelberg
+Tyler Fallon
 
-Seamntic UI
-http://semantic-ui.com/
+##Tech Used
 
+Server: Node.js with Express
+Templating: Handlebars
+Database: Sequelize, JawsDB
+User Sessions & Authentication: Express-Sessions, Passport
+Password Hashing: BCrypt
+Animations: JQuery & Materialize.js
+Tip Scraping: Cheerio, Request
+Chat: Firebase
 
-##Heroku Link
-impulsion.herokuapp.com
+##Link
+impulsion.io
