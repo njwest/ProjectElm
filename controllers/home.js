@@ -98,7 +98,15 @@ module.exports = {
                     HabitId: dbuser.HabitId
                 })
             }).then(function(dbuser){
-                res.redirect('/users/' + req.session.user.username);
+                db.Habits.findOne({
+                    where:{
+                        id: dbuser.HabitId
+                    }
+                }).then(function(results){
+                    req.session.user.habit = results.dataValues.habit;
+                    res.redirect('/users/' + req.session.user.username);
+                })
+
             })
             .catch(function(err) {
                 res.json({
