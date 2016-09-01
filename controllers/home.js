@@ -109,7 +109,7 @@ module.exports = {
 
             })
             .catch(function(err) {
-                res.render('/landing'{
+                res.render('/landing',{
                     error: err.message
                 });
             });
