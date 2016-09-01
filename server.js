@@ -61,6 +61,7 @@ var PORT = process.env.PORT || 3000;
 
 db.sequelize.sync(
     // {force:true}
+    {force:false}
     ).then(function() {
     app.listen(PORT, function(err) {
         if (err) {

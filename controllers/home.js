@@ -101,8 +101,8 @@ module.exports = {
                 res.redirect('/users/' + req.session.user.username);
             })
             .catch(function(err) {
-                res.render('landing',{
-                    error: err.message
+                res.json({
+                    message: err.message
                 });
             });
 

@@ -5,7 +5,6 @@ form input {
 	border-left: 1px solid #fff;
 
 	font-size: 14px;
-	padding: 10px;
 	width: 100%;
 
 	transition: background 2s, border-left 2s;
@@ -15,7 +14,7 @@ form input {
 li {
 	padding-left: 10px;
 	font-size: 14px;
-	margin: 0 0 5px;
+	margin: 0px;
 	height: 20px;
 }
 
@@ -33,14 +32,7 @@ button.btn.hover {
 	color: #fff;
 }
 
-.comments {
-	margin-top: 5px;
-	list-style: none;
-	padding-left: 0px;
-	overflow: scroll;
-	height: 300px;
-	width: 300px;
-}
+
 
 #borderbox {
 	border: 0px solid black;
@@ -55,8 +47,6 @@ button.btn.hover {
 	padding: 20px;
 	font-weight: bold;
 	margin-left: -62px;
-	border-top: 1px dotted #17a5e0;
-	border-bottom: 1px dotted #17a5e0;
 }
 
 #sharethoughts {
@@ -68,7 +58,11 @@ button.btn.hover {
 }
 
 #comments {
+<<<<<<< HEAD
 	height: 600px;
+=======
+	height: 400px;
+>>>>>>> ef174f95b0251b2f932bbfc6252a8974fc5d9857
 	width: 285px;
 	margin-left: -70px;
 	margin-top: -50px;
@@ -86,6 +80,11 @@ button.btn.hover {
 }
 
 #entireChat {
+<<<<<<< HEAD
 	padding-top:50px;
 	height: 75%;
+=======
+	padding-top:40px;
+	/*height: 75%;*/
+>>>>>>> ef174f95b0251b2f932bbfc6252a8974fc5d9857
 }
