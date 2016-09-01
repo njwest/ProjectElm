@@ -17,7 +17,8 @@
 
         <div id='entireChat'>
           <div class="logo"><a id="logo-container" href="#" class="brand-logo">
-              <object id="front-page-logo" type="image/svg+xml" data="../img/impulsion.png">Impulsion</object></a></div>
+
+              <object id="sideLogo" type="image/svg+xml" data="../img/impulsionWhite.png">Impulsion</object></a></div>
 
             <!-- chat -->
 
@@ -27,12 +28,12 @@
                         <div class="row">
                             <div class="col-xs-12 col-md-12">
                                 <div id='chathead'>
-                                    <h1>Chat</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </header>
+              </div>
 
     <div class="main">
       <div class="container">
@@ -47,11 +48,14 @@
 
                 <input id="comment" type="text"
                 placeholder="chat with others...">
-                <button type="submit" class="btn">post</button>
+                <button type="submit" class="btn">Enter</button>
               </div>
             </div>
+          </form>
 
         </div>
+      </div>
+    </div>
     </header>
 
 
@@ -117,7 +121,7 @@
                     dataType: "json",
                     async: true,
                     success: function(data) {
-
+                        streak = data;
                         console.log(data);
                         var progress = data * 10;
                         var string = "width:" + progress + "%";
@@ -131,12 +135,12 @@
                         }
 
                         if (data == 1 || (data < 10 && data > 0)) {
-                            $('#achievements').append(' <h5 class="center">Day 1</h5> <img class="achieveImg" src="../img/day1.png" alt="Day 1 Achievement"/ >');
+                            $('#achievements').append('<h5 class="center">Day 1</h5> <img class="achieveImg" src="../img/day1.png" alt="Day 1 Achievement"/ >');
                         } else if (data == 10 || (data > 10 && data < 30)) {
                             $('#achievements').append('<span> <h5>Day 1</h5> <img class="achieveImg" src="../img/day1.png"/>');
                             $('#achievements').append(' <h5 class="center">10 Days In!</h5> <img class="achieveImg" src="../img/10days.png" alt="10 Days In Achievement"/ >')
                         }
-                        streak = data;
+
                         console.log("var streak: " + streak);
                     }
                 });
@@ -174,8 +178,8 @@
                 url: '/api/tips',
                 dataType: 'json',
                 success: function(data){
-                    for(var i=0; i < data.length; i++){
-                        $('.tip-links').append('<li><a href="' + data[i].link +'">'+data[i].title+'</a></li>' )
+                    for(var i=0; i < 10; i++){
+                        $('.tip-links').append('<li><a href="' + data[i].link +'" target="_blank">'+data[i].title+' </a></li>' )
                     }
                 }
             })
@@ -184,6 +188,7 @@
                 $.post('/update').then(function(val) {
                     progress();
                 });
+
                 //console.log(this);
                 $(this).attr('disabled', true);
                 //progress();

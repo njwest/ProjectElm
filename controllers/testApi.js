@@ -17,7 +17,8 @@ module.exports = {
         })
     },
     renderTips: function(req, res){
-        var habit = req.session.user.habit;
+        var habit = req.session.user.habit.trim().replace(' ', '+');
+
         var results = [];
         request('https://www.google.com/search?q=quit+'+habit+'&num=10', function(error, respsonse, html){
             var $ = cheerio.load(html);
@@ -25,7 +26,6 @@ module.exports = {
                 var title = $(this).text()
                 var link = element.children[0].attribs.href.replace('/url?q=', '');
                 results.push({title: title, link: link})
-                console.log(element.children[0].attribs.href);
             });
             res.json(results);
         });
