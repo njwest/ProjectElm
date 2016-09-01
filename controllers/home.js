@@ -35,7 +35,7 @@ module.exports = {
             }
         }).then(function(dbUser) {
             if (!dbUser) {
-                res.render({
+                res.render('login', {
                     error: "User not found"
                 });
             } else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
@@ -52,8 +52,8 @@ module.exports = {
 
 
             } else {
-                res.json({
-                    message: "Invalid Password"
+                res.render('landing', {
+                    error: 'Invalid password'
                 });
             }
         });
@@ -109,8 +109,8 @@ module.exports = {
                 res.redirect('/users/' + req.session.user.username);
             })
             .catch(function(err) {
-                res.json({
-                    message: err.message
+                res.render('landing',{
+                    error: err.message
                 });
             });
 

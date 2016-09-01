@@ -148,11 +148,13 @@
 
                 <label>Username</label>
 
-                <input type="text" name="username" placeholder="Username"></input>
+
+                    <input type="text" name="username" placeholder="Username" id="username"></input>
 
                 <label>Email</label>
 
-                <input type="text" name="email" placeholder="john.smith@email.com"></input>
+
+                    <input type="text" id="email" name="email" placeholder="john.smith@email.com"></input>
 
 
                 <div class="form-group">
@@ -166,14 +168,13 @@
 
 
                 <label>Password</label>
-
                 <input type="password" id="password" name="password" placeholder="password@123">
-                <label>Re-Enter Password</label>
 
+                <label>Re-Enter Password</label>
                 <input type="password" id="check_password" name="renter-password" placeholder="password@123"></input>
             </div>
 
-            <button class="waves-effect waves-purple btn-large black register" type="submit" id="submit">Submit</button>
+            <button class="waves-effect waves-purple btn-large black register" type="submit" id="submit-registration">Submit</button>
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Close</a>
         </form>
 
@@ -190,12 +191,14 @@
             <h2 class="center">Log In</h2>
             <div class="card-panel col m8 offset-m2 s12">
 
-                <form class="login" action="/login" method="POST">
-                    <div class="">
-                        <div class="field">
-                            <div class="">
-                                <i class="user icon"></i>
-                                <input type="text" name="username" placeholder="Username" id="username">
+
+                    <form id="login" action="/login" method="POST">
+                        <div class="">
+                            <div class="field">
+                                <div class="">
+                                    <i class="user icon"></i>
+                                    <input type="text" name="username" placeholder="Username" id="username">
+                                </div>
                             </div>
                         </div>
                         <div class="field">
@@ -221,14 +224,12 @@ $(function(){
 $(".button-collapse").sideNav();
 $('.scrollspy').scrollSpy();
 
-
 var options = [
   {selector: '#about', offset: 300, callback: function(){
     nav.style.visibility = "visible";
     $('#about').fadeIn(3000);
     $('#nav').fadeIn(3000);
     $('#sunset').fadeIn(3000);
-
   }},
   {selector: '#about', offset: 300, callback: function(){
     nav.style.visibility = "visible";
@@ -239,6 +240,23 @@ var options = [
 Materialize.scrollFire(options);
 
 });
+
+    $(document).ready(function() {
+        // Error validation for the registration page
+        // var $email = $('#registration #email');
+        // var $password = $('#registration #password');
+        // var $check_password = $('#registration #check_password');
+        // var $submit = $('#submit-registration');
+        // var $username = $('#registration #username');
+        //
+        // if($password.val().trim() === $check_password.val().trim()){
+        //     console.log('passwords match!');
+        //     // console.log($email, $password, $check_password, $username);
+        //     $submit.removeClass('disabled');
+        // }else {
+        //     $submit.addClass('disabled');
+        // };
+    });
 
 </script>
 

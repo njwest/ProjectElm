@@ -3,11 +3,11 @@ var express         = require('express');
 var bodyParser      = require('body-parser');
 var exphbs          = require('express-handlebars');
 var methodOverride  = require('method-override');
-var LocalStrategy   = require('passport-local');
 var logger          = require('morgan');
 var passport        = require('passport');
 var session         = require('express-session');
 var FileStore       = require('session-file-store')(session);
+var flash           = require('express-flash');
 
 var app = express();
 require('dotenv').config({
@@ -28,6 +28,8 @@ app.use(session({
         maxAge: 60000 * 60 * 24 * 14
     }
 }));
+
+app.use(flash());
 
 // app.use(function printSession(req, res, next) {
 //   console.log('req.session', req.session);
@@ -58,7 +60,9 @@ var PORT = process.env.PORT || 3000;
 
 //Starting the server, syncing our models ------------------------------------/
 
-db.sequelize.sync({force:false}).then(function() {
+db.sequelize.sync(
+    {force:true}
+    ).then(function() {
     app.listen(PORT, function(err) {
         if (err) {
             console.error(err);
