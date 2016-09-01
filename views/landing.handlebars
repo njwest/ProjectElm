@@ -138,7 +138,7 @@
 
 <!-- REGISTRATION MODAL -->
 <div id="modal1" class="modal">
-    <div class="modal-content">
+    <div class="card-panel col s12">
 
         <h3 class="center">Register</h3>
 
@@ -174,25 +174,23 @@
             </div>
 
             <button class="waves-effect waves-purple btn-large black register" type="submit" id="submit">Submit</button>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Close</a>
         </form>
 
     </div>
 
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-    </div>
 </div>
 
 <!-- LOGIN MODAL -->
 
 <div id="modal2" class="modal">
-    <div class="modal-content">
+    <!-- <div class="modal-content"> -->
 
-        <div class="card-panel col s12">
+        <div id="login" class="card-panel col s12">
             <h2 class="center">Log In</h2>
             <div class="card-panel col m8 offset-m2 s12">
 
-                <form class="" action="/login" method="POST">
+                <form class="login" action="/login" method="POST">
                     <div class="">
                         <div class="field">
                             <div class="">
@@ -206,12 +204,15 @@
                                 <input type="password" name="password" placeholder="Password" id="username">
                             </div>
                         </div>
-                        <button class="waves-effect waves-yellow btn-large black register" type="submit" id="login">Login</button>
+                        <button class="waves-effect waves-yellow btn-large black register" type="submit" id="">Login</button>
+
                     </div>
                 </form>
+
             </div>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Close</a>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <script type="text/javascript">
