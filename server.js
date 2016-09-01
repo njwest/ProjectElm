@@ -7,7 +7,7 @@ var logger          = require('morgan');
 var passport        = require('passport');
 var session         = require('express-session');
 var FileStore       = require('session-file-store')(session);
-var flash = require('express-flash');
+var flash           = require('express-flash');
 
 var app = express();
 require('dotenv').config({
