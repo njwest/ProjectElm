@@ -131,7 +131,7 @@
 <footer class="page-footer black">
   <div class="footer-copyright">
     <div class="container center">
-    <a class="brown-text text-lighten-3 center" href="http://impulsion.io">© Impulsion Dev</a>
+    <a class="brown-text text-lighten-3 center" href="http://impulsion.io">Impulsion Dev ©</a>
     </div>
   </div>
 </footer>
@@ -147,7 +147,6 @@
             <div class="card-panel">
 
                 <label>Username</label>
-
 
                     <input type="text" name="username" placeholder="Username" id="username"></input>
 
@@ -185,38 +184,37 @@
 <!-- LOGIN MODAL -->
 
 <div id="modal2" class="modal">
-    <!-- <div class="modal-content"> -->
 
-        <div id="login" class="card-panel col s12">
-            <h2 class="center">Log In</h2>
-            <div class="card-panel col m8 offset-m2 s12">
+      <div id="loginForm">
 
+          <div class="card-panel col s12">
+              <h2 class="center">Log In</h2>
+              <div class="card-panel col m8 offset-m2 s12">
 
-                    <form id="login" action="/login" method="POST">
-                        <div class="">
-                            <div class="field">
-                                <div class="">
-                                    <i class="user icon"></i>
-                                    <input type="text" name="username" placeholder="Username" id="username">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="">
-                                <i class="lock icon"></i>
-                                <input type="password" name="password" placeholder="Password" id="username">
-                            </div>
-                        </div>
-                        <button class="waves-effect waves-yellow btn-large black register" type="submit" id="">Login</button>
+                  <form id="login" action="/login" method="POST">
+                      <div class="">
+                          <div class="field">
+                              <div class="">
+                                  <i class="user icon"></i>
+                                  <input type="text" name="username" placeholder="Username" id="username">
+                              </div>
+                          </div>
+                          <div class="field">
+                              <div class="">
+                                  <i class="lock icon"></i>
+                                  <input type="password" name="password" placeholder="Password" id="username">
+                              </div>
+                          </div>
+                          <button class="waves-effect waves-yellow btn-large black register" type="submit" id="login">Login</button>
+                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Close</a>
 
-                    </div>
-                </form>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
 
-            </div>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Close</a>
-        </div>
-    <!-- </div> -->
-</div>
 
 <script type="text/javascript">
 $(function(){

@@ -224,8 +224,6 @@ nav a:visited{
 }
 
 
-
-
 #about{
   padding-bottom: 15px;
   margin-top: -50px;
@@ -252,10 +250,7 @@ nav a:visited{
     z-index:-1;
 }
 
-.modal{
-  background: none;
-  margin-top: 0px;
-}
+
 
 label{
   color: black;
@@ -263,14 +258,18 @@ label{
 }
 
 input:active{
-  border-bottom-color: orange;
+
 }
 
-#login{
-  top: 25%;
+.modal{
+    background: none;
+  margin-top: 0px;
+}
+
+#loginForm{
+  padding-top: 25%;
+  top: 20%;
   left: 15%;
-  width: 500px;
-  position: absolute;
 }
 
 @media only screen and (max-height: 899px){
