@@ -266,8 +266,6 @@ label.active{
   margin-top: 0px;
 }
 
-
-
 .input-field{
   color: black;
   font-size: 14px;
@@ -275,6 +273,15 @@ label.active{
 
 #sideLogo{
   padding-left: 25px;
+}
+
+.comments {
+	margin-top: 5px;
+	list-style: none;
+	padding-left: 0px;
+	overflow: scroll;
+	height: 300px;
+	width: 300px;
 }
 
 @media only screen and (max-height: 899px){
@@ -308,6 +315,10 @@ label.active{
 
 }
 
+#nav-mobile{
+  height: 100%;
+}
+
 @media only screen and (max-width: 992px) {
   .side-nav.fixed {
     -webkit-transform: translateX(105%)!important;
@@ -328,7 +339,9 @@ label.active{
   .chatPanel{
     display: block;
   }
-
+  .comments{
+    height: 600px;
+  }
 
 }
 
