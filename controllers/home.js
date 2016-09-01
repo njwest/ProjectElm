@@ -104,7 +104,9 @@ module.exports = {
                     }
                 }).then(function(results){
                     req.session.user.habit = results.dataValues.habit;
-                    res.redirect('/users/' + req.session.user.username);
+                    res.redirect('/users/' + req.session.user.username, {
+                        user: req.session.user
+                    });
                 })
 
             })
